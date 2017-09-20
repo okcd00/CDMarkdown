@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="To be more curious and less lazy.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Chen Dian">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="CDPlayer&#39;s Blog"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="To be more curious and less lazy." />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="CDPlayer&#39;s Blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="website" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>CDPlayer&#39;s Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+	
+	<!-- star map -->
+	<script type="text/javascript" color="255,255,255" opacity='0.75' zIndex="-2" count="88" src="js/canvas.js"></script>
+	
+	<!-- Earth -->
+	<script type="text/javascript" src="//rf.revolvermaps.com/0/0/6.js?i=5mihyim0z76&amp;m=7&amp;c=66ccff&amp;cr1=ff0000&amp;f=arial&amp;l=0&amp;lx=200&amp;ly=-20&amp;hi=10" async="async"></script>
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/wlog">
+                    WorkLog
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa fa-tags" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+        
+            <section class="main">
+                
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/wlog/backup/1709_week1.html">
+                Untitled
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2017-09-04</span>
+            
+            
+                <a href="#disqus_thread" class="comments">留言</a>
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h1 id="前周工作报告"><a href="#前周工作报告" class="headerlink" title="前周工作报告 "></a>前周工作报告 </h1><p>@(九月)[第一周,2017-08-28,2017-09-03]</p>
+<h3 id="1-解决线上运行中产生的问题"><a href="#1-解决线上运行中产生的问题" class="headerlink" title="1. 解决线上运行中产生的问题"></a>1. 解决线上运行中产生的问题</h3><blockquote>
+<p>出错时无法准确定位错误位置，为了报错时可以立刻定位到错误所在，从而便于快速debug，做出以下几处修改作为解决方案：</p>
+</blockquote>
+<ul>
+<li>增加异常抛出<br>   <a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/22361252346d710c2d2d15bdf51ce8b464669acf" target="_blank" rel="external">Add <code>raise</code> to determine error type. </a></li>
+<li>增加可用于debug的中间变量输出<br>   <a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/84dda3148feb0b941809e4d1b4cb5d89220b3b79" target="_blank" rel="external">Modify mid_output for debugging.</a></li>
+<li>增加判断异常文本直接跳过的逻辑<br>   <a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/bfe3f0fdbdec4e1cda42e3007500d91768379a83" target="_blank" rel="external">Add judgement for whether skip current document or not.</a></li>
+<li>在python逻辑层面增强系统稳定性<br>   <a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/e9ef37f4990f46ae9777295259e3f119c79de76b" target="_blank" rel="external">Advanced stability</a></li>
+</ul>
+<h3 id="2-更新规则库"><a href="#2-更新规则库" class="headerlink" title="2. 更新规则库"></a>2. 更新规则库</h3><blockquote>
+<p>在阅读部分输出结果的过程中，发现几处先前未能发现的连接词与逻辑漏洞进行修改</p>
+</blockquote>
+<ul>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/a8897d3e230f0a898a835956b9eca307118aca1e" target="_blank" rel="external">Modify several rules.</a></li>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/06027074f2db17cf5f4565993ca3d83070dddbfc" target="_blank" rel="external">Update link_word list.</a></li>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/9a1210b1ee83bec77730d73f355521319e295533" target="_blank" rel="external">Add reference features for each sentence_dict.</a></li>
+</ul>
+<h3 id="3-为因果标注编写后端逻辑"><a href="#3-为因果标注编写后端逻辑" class="headerlink" title="3. 为因果标注编写后端逻辑"></a>3. 为因果标注编写后端逻辑</h3><blockquote>
+<p>对于形同“由于”、“…所致”等问题难以通过规则制作正确的训练数据，故需要标注系统进行辅助</p>
+</blockquote>
+<ul>
+<li>预留标注数据字段<br><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/d5697527ea50586ed22c5f7500de5b0ae0b1efb0" target="_blank" rel="external">Add placeholder for later marking functions.</a></li>
+<li>实现标注类（类名：LabelMark）基础框架<br><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/bd74e607b1ada2c38ed6a0dd883de6d59da09282" target="_blank" rel="external">Basic version Alpha for LabelMark module.</a></li>
+<li>为标注类制作input接口，可以把o301\o302\o401文件提取所需信息并转化成便于分析的形式<br><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/3e54ad16370a102dc2dcc2a9babba22ec1bcc4c2" target="_blank" rel="external">Basic pre_processing for sentence_dict type.</a> </li>
+<li>为数据处理实现了一些低时间复杂度的工具函数<br><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/fa03be6fab4b91a4c94bec4592b1e74f7268a838" target="_blank" rel="external">Several new functions as data_tools.</a></li>
+<li>与前端的前辈商讨后，最终确定了基本方案，并给出API接口<br><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/ae5049750b0255f22448236e0cef06028940876a" target="_blank" rel="external">Finished API for ppt of <code>因果标注相关.pptx</code></a></li>
+</ul>
+<h3 id="4-为前端标注商讨确定数据结构"><a href="#4-为前端标注商讨确定数据结构" class="headerlink" title="4. 为前端标注商讨确定数据结构"></a>4. 为前端标注商讨确定数据结构</h3><ul>
+<li>初期决定数据结构，并完成第一版的<code>因果关系标注.pptx</code><br><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/e0b581091f8c3e03b3f0f7295289e43980926528" target="_blank" rel="external">Determines the basic data structure in trans.</a></li>
+<li>后续经罗老师提醒，需要顾及到多种情况的因果标注，进行了改进<br><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/9c3844986f7cfe34cac5a26e8ae1a901b579dd7e" target="_blank" rel="external">advanced data structure for updated <code>因果标注相关.pptx</code></a><br><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/7ceca7c231c6158508711cd497951c35ee1f9bb6" target="_blank" rel="external">Modified data structure and describe for label marking.</a></li>
+</ul>
+<h3 id="5-一些隐含问题的处理"><a href="#5-一些隐含问题的处理" class="headerlink" title="5. 一些隐含问题的处理"></a>5. 一些隐含问题的处理</h3><blockquote>
+<p>线上运行时，发现当两个及以上相同segment相继出现的时候会造成position字段错误，进行修正，如“A/B/B/C/D”中的两个B字段均判定为<code>position=1</code>类似型的错误</p>
+</blockquote>
+<ul>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/225e2f4a02b2f562e0ef36b59ed8a42b62c26d8f" target="_blank" rel="external">Fix segment position calculation in causality.</a></li>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/fb916a7b1a1b17635e4620164e87da873a6d1691" target="_blank" rel="external">Fix issues for possible recurring location</a></li>
+</ul>
+<h3 id="Other-Works"><a href="#Other-Works" class="headerlink" title="Other Works"></a>Other Works</h3><ul>
+<li><p>ICT_Auto_Login</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/okcd00/article/details/77677326" target="_blank" rel="external">http://blog.csdn.net/okcd00/article/details/77677326</a><br>与李宏伟学长一起为实验室的自动登陆进行了基于PhantomJS模拟点击（我）与python爬虫（宏伟学长）两种方法的尝试，成功为组里解决了新的登陆机制下的自动登陆问题</p>
+</blockquote>
+</li>
+<li><p>PPT Modify</p>
+<blockquote>
+<p>PPT for AI Course<br><a href="https://okcd00.github.io/others/AI Course PPT 试修改说明.html">点此查看</a> 当前修改进度</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Weekly-News"><a href="#Weekly-News" class="headerlink" title="Weekly News"></a>Weekly News</h3><ul>
+<li>国科大中关村校区自<code>2017-08-28</code>至<code>2017-09-28</code>停止热水供应<ul>
+<li>影响：该周四处奔波于各处借用浴室，其中两天尝试使用学校浴室排队时间也相对较长</li>
+<li>后续：曹荣禹回来之后，下班回去可以和曹荣禹一同前往科一招借用浴室，可以省下不少时间。</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+    <div class="comments">
+        
+<div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+    </div>
+    
+
+</div>
+            </section>
+        
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    Coding the world.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2017-09/【O2OTM】你的搜索透露了你的喜好——跨模态推荐.html">【O2OTM】你的搜索透露了你的喜好——跨模态推荐</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017-08/【selenium】Windows平台下使用python自动登陆网关.html">【selenium】Windows平台下使用python自动登陆网关</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017-06/【选课脚本】用Python网页爬虫来进行选(qiang)课.html">【选课脚本】用Python网页爬虫来进行选(qiang)课</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017-02/【Theano】环境配置——“g++ not detected”.html">【Theano】环境配置——“g++ Not Detected”</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/论文阅读/">论文阅读</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/环境配置/">环境配置</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/功能脚本/">功能脚本</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/okcd00/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://twitter.com/okcd00/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:okcd00@vip.qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="http://blog.csdn.net/okcd00/rss/list">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @<a href="https://github.com/okcd00/">Chen Dian</a>. 2017 All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script type="text/javascript" color="255,255,255" opacity='0.7' zIndex="-2" count="99" src="js/canvas.js"></script>
+
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'okcd00';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>

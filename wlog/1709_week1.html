@@ -1,0 +1,114 @@
+<!DOCTYPE html><html><head><title>前周工作报告</title><meta charset='utf-8'><link href='https://dn-maxiang.qbox.me/res-min/themes/marxico.css' rel='stylesheet'><style>
+.note-content  {font-family: 'Helvetica Neue', Arial, 'Hiragino Sans GB', STHeiti, 'Microsoft YaHei', 'WenQuanYi Micro Hei', SimSun, Song, sans-serif;}
+
+</style></head><body><div id='preview-contents' class='note-content'>
+                        
+                    
+
+
+
+<h1 id="前周工作报告">前周工作报告 </h1>
+
+<p><p class="note-tags "><code class="notebook">九月</code> <code>第一周</code> <code>2017-08-28</code> <code>2017-09-03</code> </p></p>
+
+
+
+<h3 id="1-解决线上运行中产生的问题">1. 解决线上运行中产生的问题</h3>
+
+<blockquote>
+  <p>出错时无法准确定位错误位置，为了报错时可以立刻定位到错误所在，从而便于快速debug，做出以下几处修改作为解决方案：</p>
+</blockquote>
+
+<ul><li>增加异常抛出 <br>
+ <a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/22361252346d710c2d2d15bdf51ce8b464669acf" target="_blank">Add <code>raise</code> to determine error type. </a></li>
+<li>增加可用于debug的中间变量输出 <br>
+ <a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/84dda3148feb0b941809e4d1b4cb5d89220b3b79" target="_blank">Modify mid_output for debugging.</a></li>
+<li>增加判断异常文本直接跳过的逻辑 <br>
+ <a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/bfe3f0fdbdec4e1cda42e3007500d91768379a83" target="_blank">Add judgement for whether skip current document or not.</a></li>
+<li>在python逻辑层面增强系统稳定性 <br>
+ <a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/e9ef37f4990f46ae9777295259e3f119c79de76b" target="_blank">Advanced stability</a></li>
+</ul>
+
+
+
+<h3 id="2-更新规则库">2. 更新规则库</h3>
+
+<blockquote>
+  <p>在阅读部分输出结果的过程中，发现几处先前未能发现的连接词与逻辑漏洞进行修改</p>
+</blockquote>
+
+<ul><li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/a8897d3e230f0a898a835956b9eca307118aca1e" target="_blank">Modify several rules.</a></li>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/06027074f2db17cf5f4565993ca3d83070dddbfc" target="_blank">Update link_word list.</a></li>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/9a1210b1ee83bec77730d73f355521319e295533" target="_blank">Add reference features for each sentence_dict.</a></li>
+</ul>
+
+
+
+<h3 id="3-为因果标注编写后端逻辑">3. 为因果标注编写后端逻辑</h3>
+
+<blockquote>
+  <p>对于形同“由于”、“…所致”等问题难以通过规则制作正确的训练数据，故需要标注系统进行辅助</p>
+</blockquote>
+
+<ul><li>预留标注数据字段 <br>
+<a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/d5697527ea50586ed22c5f7500de5b0ae0b1efb0" target="_blank">Add placeholder for later marking functions.</a></li>
+<li>实现标注类（类名：LabelMark）基础框架 <br>
+<a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/bd74e607b1ada2c38ed6a0dd883de6d59da09282" target="_blank">Basic version Alpha for LabelMark module.</a></li>
+<li>为标注类制作input接口，可以把o301\o302\o401文件提取所需信息并转化成便于分析的形式 <br>
+<a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/3e54ad16370a102dc2dcc2a9babba22ec1bcc4c2" target="_blank">Basic pre_processing for sentence_dict type.</a> </li>
+<li>为数据处理实现了一些低时间复杂度的工具函数 <br>
+<a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/fa03be6fab4b91a4c94bec4592b1e74f7268a838" target="_blank">Several new functions as data_tools.</a></li>
+<li>与前端的前辈商讨后，最终确定了基本方案，并给出API接口 <br>
+<a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/ae5049750b0255f22448236e0cef06028940876a" target="_blank">Finished API for ppt of <code>因果标注相关.pptx</code></a></li>
+</ul>
+
+
+
+<h3 id="4-为前端标注商讨确定数据结构">4. 为前端标注商讨确定数据结构</h3>
+
+<ul><li>初期决定数据结构，并完成第一版的<code>因果关系标注.pptx</code> <br>
+<a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/e0b581091f8c3e03b3f0f7295289e43980926528" target="_blank">Determines the basic data structure in trans.</a></li>
+<li>后续经罗老师提醒，需要顾及到多种情况的因果标注，进行了改进 <br>
+<a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/9c3844986f7cfe34cac5a26e8ae1a901b579dd7e" target="_blank">advanced data structure for updated <code>因果标注相关.pptx</code></a> <br>
+<a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/7ceca7c231c6158508711cd497951c35ee1f9bb6" target="_blank">Modified data structure and describe for label marking.</a></li>
+</ul>
+
+
+
+<h3 id="5-一些隐含问题的处理">5. 一些隐含问题的处理</h3>
+
+<blockquote>
+  <p>线上运行时，发现当两个及以上相同segment相继出现的时候会造成position字段错误，进行修正，如“A/B/B/C/D”中的两个B字段均判定为<code>position=1</code>类似型的错误</p>
+</blockquote>
+
+<ul><li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/225e2f4a02b2f562e0ef36b59ed8a42b62c26d8f" target="_blank">Fix segment position calculation in causality.</a></li>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/fb916a7b1a1b17635e4620164e87da873a6d1691" target="_blank">Fix issues for possible recurring location</a></li>
+</ul>
+
+
+
+<h3 id="other-works">Other Works</h3>
+
+<ul><li>ICT_Auto_Login</li>
+</ul>
+
+<blockquote>
+  <p><a href="http://blog.csdn.net/okcd00/article/details/77677326" target="_blank">http://blog.csdn.net/okcd00/article/details/77677326</a> <br>
+  与李宏伟学长一起为实验室的自动登陆进行了基于PhantomJS模拟点击（我）与python爬虫（宏伟学长）两种方法的尝试，成功为组里解决了新的登陆机制下的自动登陆问题</p>
+</blockquote>
+
+<ul><li>PPT Modify</li>
+</ul>
+
+<blockquote>
+  <p>PPT for AI Course <br>
+  <a href="https://okcd00.github.io/others/AI Course PPT 试修改说明.html" target="_blank">点此查看</a> 当前修改进度</p>
+</blockquote>
+
+<h3 id="weekly-news">Weekly News</h3>
+
+<ul><li>国科大中关村校区自<code>2017-08-28</code>至<code>2017-09-28</code>停止热水供应 <br>
+<ul>
+<li>影响：该周四处奔波于各处借用浴室，其中两天尝试使用学校浴室排队时间也相对较长</li>
+<li>后续：曹荣禹回来之后，下班回去可以和曹荣禹一同前往科一招借用浴室，可以省下不少时间。</li></ul></li>
+</ul></div></body></html>

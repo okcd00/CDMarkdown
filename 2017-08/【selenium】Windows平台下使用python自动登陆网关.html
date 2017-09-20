@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="To be more curious and less lazy.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Chen Dian">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="【selenium】Windows平台下使用python自动登陆网关"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="To be more curious and less lazy." />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="CDPlayer&#39;s Blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>【selenium】Windows平台下使用python自动登陆网关 - CDPlayer&#39;s Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+	
+	<!-- star map -->
+	<script type="text/javascript" color="255,255,255" opacity='0.75' zIndex="-2" count="88" src="js/canvas.js"></script>
+	
+	<!-- Earth -->
+	<script type="text/javascript" src="//rf.revolvermaps.com/0/0/6.js?i=5mihyim0z76&amp;m=7&amp;c=66ccff&amp;cr1=ff0000&amp;f=arial&amp;l=0&amp;lx=200&amp;ly=-20&amp;hi=10" async="async"></script>
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/wlog">
+                    WorkLog
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2017-08/【selenium】Windows平台下使用python自动登陆网关.html">
+                【selenium】Windows平台下使用python自动登陆网关
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2017-08-30</span>
+            
+            
+                <a href="#disqus_thread" class="comments">留言</a>
+            
+            
+                <span class="category">
+                    <a href="/categories/功能脚本/">功能脚本</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h2><p>所里开启了两步验证与二级加密（就不说是哪里了）；<br>以前的auto_login用不了了，所以尝试着有没有什么新法子；<br>看到一个用 Phantomjs + Selenium 的解决方案，着手试试看好了。</p>
+<a id="more"></a>
+<p>文中涉及的login脚本解决方案参照自如下Github：<br><a href="https://github.com/gongshijun/ict_autoconnect" target="_blank" rel="external">https://github.com/gongshijun/ict_autoconnect</a></p>
+<p>由于配置过于坎坷，所以个人直接做了个简化方案，<br>嫌看的麻烦的或者想要直接使用的可以直接跳转<a href="#t10">这里</a><br>更新(Thx for lhw446)：嫌配置麻烦的可以用这个<a href="#t12">单文件版</a></p>
+<h2 id="0x01-获取登陆脚本"><a href="#0x01-获取登陆脚本" class="headerlink" title="0x01 获取登陆脚本"></a>0x01 获取登陆脚本</h2><p>可以从Github仓库上直接clone到本地<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="string">D:</span>\Github&gt;git clone <span class="string">https:</span><span class="comment">//github.com/gongshijun/ict_autoconnect.git</span></div><div class="line">Cloning into <span class="string">'ict_autoconnect'</span>...</div><div class="line"><span class="string">remote:</span> Counting <span class="string">objects:</span> <span class="number">29</span>, done.</div><div class="line"><span class="string">remote:</span> Total <span class="number">29</span> (delta <span class="number">0</span>), reused <span class="number">0</span> (delta <span class="number">0</span>), pack-reused <span class="number">29</span></div><div class="line">Unpacking <span class="string">objects:</span> <span class="number">100</span>% (<span class="number">29</span>/<span class="number">29</span>), done.</div><div class="line">Checking connectivity... done.</div></pre></td></tr></table></figure></p>
+<p>也可以下载zip压缩包到本地解压<br><a href="https://github.com/gongshijun/ict_autoconnect/archive/master.zip" target="_blank" rel="external">https://github.com/gongshijun/ict_autoconnect/archive/master.zip</a></p>
+<p>本人放在了<code>D:\Github</code>目录下，下文中均默认设为此目录中进行介绍。</p>
+<h2 id="0x02-环境配置"><a href="#0x02-环境配置" class="headerlink" title="0x02 环境配置"></a>0x02 环境配置</h2><h3 id="python"><a href="#python" class="headerlink" title="python"></a>python</h3><p>唔……我确实真的有仔细考虑要不要把python放进环境需求的一部分……<br>想了想……嗯，该说的还是要说的</p>
+<ul>
+<li>Windows cmd (Win+R 输入cmd然后回车) </li>
+<li><code>python2.7</code></li>
+<li>如果您想做成EXE格式的程序，请同时配有<code>python3.3</code>或者<code>python3.4</code><ul>
+<li>（作者大大炫技结果不小心造成了复杂度的提升）</li>
+</ul>
+</li>
+</ul>
+<h3 id="PhantomJS"><a href="#PhantomJS" class="headerlink" title="PhantomJS"></a>PhantomJS</h3><p><a href="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-windows.zip" target="_blank" rel="external">https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-windows.zip</a><br>windows平台的各位把这个下载下来之后解压放在刚刚的目录中，比如我解压后放在<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> D:\Github\ict_autoconnect 的目录</div><div class="line"></div><div class="line">2017/08/29  13:38    &lt;DIR&gt;          .</div><div class="line">2017/08/29  13:38    &lt;DIR&gt;          ..</div><div class="line">2017/08/29  13:35             1,266 .gitignore</div><div class="line">2017/08/29  13:35             1,005 common.py</div><div class="line">2017/08/29  13:35    &lt;DIR&gt;          js</div><div class="line">2017/08/29  13:35            11,558 LICENSE</div><div class="line">2017/08/29  13:35             2,141 login.py</div><div class="line">2016/01/25  06:17    &lt;DIR&gt;          phantomjs-2.1.1-windows  # &lt;= 这里</div><div class="line">2017/08/29  13:35             1,237 README.md</div><div class="line">2017/08/29  13:35               403 setup.py</div><div class="line">2017/08/29  13:40                40 user.conf</div></pre></td></tr></table></figure></p>
+<h3 id="selenium"><a href="#selenium" class="headerlink" title="selenium"></a>selenium</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 直接安装，不过可能会连接超时或者很慢</span></div><div class="line">C:\Users\Work&gt;pip install selenium</div><div class="line">Collecting selenium</div><div class="line">  Retrying (Retry(total=4, connect=None, read=None, redirect=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='pypi.python.org', port=443): Read timed out. (read timeout=15)",)'</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 如果pypi源下载不便，可以选择用国内源下载，记得加上trusted-host参数</span></div><div class="line"><span class="meta">#</span><span class="bash"> 这里我用豆瓣的了，当然用清华、阿里之类的都是可以的</span></div><div class="line">C:\Users\Work&gt;pip install -i http://pypi.douban.com/simple/ selenium --trusted-host pypi.douban.com</div><div class="line">Installing collected packages: selenium</div><div class="line">Successfully installed selenium-3.5.0</div></pre></td></tr></table></figure>
+<h2 id="0x03-准备工作"><a href="#0x03-准备工作" class="headerlink" title="0x03 准备工作"></a>0x03 准备工作</h2><h3 id="user-conf-（设置用户名-amp-密码）"><a href="#user-conf-（设置用户名-amp-密码）" class="headerlink" title="user.conf （设置用户名&amp;密码）"></a>user.conf （设置用户名&amp;密码）</h3><p>conf文件里写好自己的用户名密码就好啦<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attr">username</span> = YOUR_USERNAME</div><div class="line"><span class="attr">password</span> = YOUR_PASSWORD</div></pre></td></tr></table></figure></p>
+<h3 id="setup-py（输出为可执行文件，python-3-3-3-4-可选）"><a href="#setup-py（输出为可执行文件，python-3-3-3-4-可选）" class="headerlink" title="setup.py（输出为可执行文件，python 3.3/3.4 可选）"></a>setup.py（输出为可执行文件，python 3.3/3.4 可选）</h3><p>这个<code>setup.py</code>的作用是将python脚本做成exe可执行文件，<br>然而其中带有的<code>py2exe</code>模块是py3.3以上才可以使用的包，所以如果想做成exe格式的执行文件的话，<br><strong>请自备py2与py3两个版本的python</strong></p>
+<p>接下来是本人的心路历程<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"># 首先我们来看看这个setup.<span class="keyword">py</span></div><div class="line">D:\Github\ict_autoconnect&gt;<span class="keyword">python</span> setup.<span class="keyword">py</span></div><div class="line">Traceback (most recent <span class="keyword">call</span> <span class="keyword">last</span>):</div><div class="line">  File <span class="string">"setup.py"</span>, <span class="built_in">line</span> <span class="number">10</span>, in <span class="symbol">&lt;module&gt;</span></div><div class="line">    import py2exe</div><div class="line">ImportError: No module named py2exe</div><div class="line"></div><div class="line"># 好嘛，没有我就去装呗</div><div class="line">D:\Github\ict_autoconnect&gt;pip install py2exe</div><div class="line">Collecting py2exe</div><div class="line">  Retrying (Retry(total=<span class="number">4</span>, connect=None, <span class="keyword">read</span>=None, redirect=None)) after connection broken by <span class="string">'ReadTimeoutError("HTTPSConnectionPool(host='</span>pypi.<span class="keyword">python</span>.org<span class="string">', port=443): Read timed out. (read timeout=15)",)'</span>: /simple/py2exe/</div><div class="line"></div><div class="line"># 哦忘记了……</div><div class="line">D:\Github\ict_autoconnect&gt;pip install -i http://pypi.douban.<span class="keyword">com</span>/simple/ py2exe --trusted-host pypi.douban.<span class="keyword">com</span></div><div class="line">Collecting py2exe</div><div class="line">    RuntimeError: This package requires Python <span class="number">3.3</span> <span class="built_in">or</span> <span class="keyword">later</span></div><div class="line"></div><div class="line"># WHAT???</div><div class="line"># 转为 <span class="keyword">python3</span>.<span class="number">6.0</span> 后（请善用activate）</div><div class="line"></div><div class="line"># 对了转成<span class="keyword">python3</span>之后别忘了刚刚装的selenium</div><div class="line">D:\Github\ict_autoconnect&gt;pip install -i http://pypi.douban.<span class="keyword">com</span>/simple/ selenium --trusted-host pypi.douban.<span class="keyword">com</span></div><div class="line">Installing collected package<span class="variable">s:</span> selenium</div><div class="line">Successfully installed selenium-<span class="number">3.5</span>.<span class="number">0</span></div><div class="line"></div><div class="line"># 可以，能装py2exe了</div><div class="line">D:\Github\ict_autoconnect&gt;pip install -i http://pypi.douban.<span class="keyword">com</span>/simple/ py2exe --trusted-host pypi.douban.<span class="keyword">com</span></div><div class="line">Installing collected package<span class="variable">s:</span> py2exe</div><div class="line">Successfully installed py2exe-<span class="number">0.9</span>.<span class="number">2.2</span></div><div class="line"></div><div class="line"># ......</div><div class="line">D:\Github\ict_autoconnect&gt;<span class="keyword">python</span> setup.<span class="keyword">py</span></div><div class="line">  yield <span class="string">"store"</span>, (names[oparg],)</div><div class="line">IndexError: tuple <span class="built_in">index</span> out of <span class="built_in">range</span></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p><strong>细心的我去stackoverflow查了一下</strong><br><a href="https://stackoverflow.com/questions/41578808/python-indexerror-tuple-index-out-of-range-when-using-py2exe" target="_blank" rel="external">传送门：python-indexerror-tuple-index-out-of-range-when-using-py2exe</a><br>The bytecode often changes in small ways from version to version that could break even Python 3.5 (given only 3.3 and 3.4 support is claimed explicitly), but 3.6 is 100% guaranteed to fail.</p>
+</blockquote>
+<p>简单解释一下，py2exe这个东西可行的版本极为狭窄，py3.3或3.4才可以使用：（以下说明来自知乎 @刘智敏）<br>把python回退到3.4之后，这个问题得到解决。根据Python3.5的API变动说明，初步判断问题原因是 generators 在3.5之后的属性有变化，而 yield 的实现用到了 generator（了解很浅，如有误请指正）。正好py2exe支持的最高版本为py3.4  。</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"># 怒开一个新的python3.3环境 </div><div class="line">$ conda create -n python3.3 numpy python=3.3 # numpy可选，我个人装啥都喜欢带个numpy</div><div class="line">$ activate python3.3</div><div class="line"></div><div class="line">(python3.3) D:<span class="symbol">\G</span>ithub<span class="symbol">\i</span>ct_autoconnect&gt;pip install -i http://pypi.douban.com/simple/ py2exe --trusted-host pypi.douban.com</div><div class="line"></div><div class="line">(python3.3) D:<span class="symbol">\G</span>ithub<span class="symbol">\i</span>ct_autoconnect&gt;pip install -i http://pypi.douban.com/simple/ selenium --trusted-host pypi.douban.com</div><div class="line"></div><div class="line">(python3.3) D:<span class="symbol">\G</span>ithub<span class="symbol">\i</span>ct_autoconnect&gt;python setup.py</div><div class="line">running py2exe</div><div class="line"></div><div class="line">  5 missing Modules</div><div class="line">  ------------------</div><div class="line">? netbios                             imported from uuid</div><div class="line">? readline                            imported from cmd, code, pdb</div><div class="line">? win32api                            imported from platform</div><div class="line">? win32con                            imported from platform</div><div class="line">? win32wnet                           imported from uuid</div><div class="line">Building 'dist<span class="symbol">\l</span>ogin.exe'.</div><div class="line">Building shared code archive 'dist<span class="symbol">\l</span>ibrary.zip'.</div><div class="line">Copy c:<span class="symbol">\p</span>rogramdata<span class="symbol">\a</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\p</span>ython3.3<span class="symbol">\p</span>ython33.dll to dist</div><div class="line">Copy C:<span class="symbol">\P</span>rogramData<span class="symbol">\A</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\p</span>ython3.3<span class="symbol">\D</span>LLs<span class="symbol">\u</span>nicodedata.pyd to dist<span class="symbol">\u</span>nicodedata.pyd</div><div class="line">Copy C:<span class="symbol">\P</span>rogramData<span class="symbol">\A</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\p</span>ython3.3<span class="symbol">\D</span>LLs<span class="symbol">\_</span>lzma.pyd to dist<span class="symbol">\_</span>lzma.pyd</div><div class="line">Copy C:<span class="symbol">\P</span>rogramData<span class="symbol">\A</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\p</span>ython3.3<span class="symbol">\D</span>LLs<span class="symbol">\_</span>ctypes.pyd to dist<span class="symbol">\_</span>ctypes.pyd</div><div class="line">Copy C:<span class="symbol">\P</span>rogramData<span class="symbol">\A</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\p</span>ython3.3<span class="symbol">\D</span>LLs<span class="symbol">\_</span>bz2.pyd to dist<span class="symbol">\_</span>bz2.pyd</div><div class="line">Copy C:<span class="symbol">\P</span>rogramData<span class="symbol">\A</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\p</span>ython3.3<span class="symbol">\D</span>LLs<span class="symbol">\_</span>hashlib.pyd to dist<span class="symbol">\_</span>hashlib.pyd</div><div class="line">Copy C:<span class="symbol">\P</span>rogramData<span class="symbol">\A</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\p</span>ython3.3<span class="symbol">\D</span>LLs<span class="symbol">\_</span>socket.pyd to dist<span class="symbol">\_</span>socket.pyd</div><div class="line">Copy C:<span class="symbol">\P</span>rogramData<span class="symbol">\A</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\p</span>ython3.3<span class="symbol">\D</span>LLs<span class="symbol">\_</span>ssl.pyd to dist<span class="symbol">\_</span>ssl.pyd</div><div class="line">Copy C:<span class="symbol">\P</span>rogramData<span class="symbol">\A</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\p</span>ython3.3<span class="symbol">\D</span>LLs<span class="symbol">\p</span>yexpat.pyd to dist<span class="symbol">\p</span>yexpat.pyd</div><div class="line">Copy C:<span class="symbol">\P</span>rogramData<span class="symbol">\A</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\p</span>ython3.3<span class="symbol">\D</span>LLs<span class="symbol">\s</span>elect.pyd to dist<span class="symbol">\s</span>elect.pyd</div><div class="line">Copy DLL C:<span class="symbol">\P</span>rogramData<span class="symbol">\A</span>naconda3<span class="symbol">\e</span>nvs<span class="symbol">\p</span>ython3.3<span class="symbol">\M</span>SVCR100.dll to dist\</div></pre></td></tr></table></figure>
+<h3 id="library-zip"><a href="#library-zip" class="headerlink" title="library.zip"></a>library.zip</h3><p><code>$ python setup.py</code>搞定之后，就会发现目录下多了几个文件夹，进入目录<code>js/</code>，把里面的两个js文件放进<code>dist/library.zip</code>里的<code>selenium/webdriver/remote</code>里。</p>
+<p><img src="/assets/1505384737032.png" alt="Alt text"></p>
+<p>然后这个dist文件夹就相当于一个你本人定制的release了，那个<code>login.exe</code>就可以直接使用了（基于之前user.conf里的帐号与密码）</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"> D:\Github\ict_autoconnect\dist 的目录</div><div class="line"></div><div class="line"><span class="number">2017/08/29</span>  <span class="number">14</span>:<span class="number">35</span>    &lt;DIR&gt;          .</div><div class="line"><span class="number">2017/08/29</span>  <span class="number">14</span>:<span class="number">35</span>    &lt;DIR&gt;          ..</div><div class="line"><span class="number">2017/08/29</span>  <span class="number">14</span>:<span class="number">35</span>         <span class="number">4</span>,<span class="number">970,261</span> library.zip</div><div class="line"><span class="number">2017/08/29</span>  <span class="number">14</span>:<span class="number">34</span>            <span class="number">33</span>,<span class="number">280</span> login.exe</div><div class="line"><span class="number">2010/03/18</span>  <span class="number">22</span>:<span class="number">36</span>           <span class="number">827,728</span> MSVCR100.dll</div><div class="line"><span class="number">2014/03/10</span>  <span class="number">00</span>:<span class="number">35</span>           <span class="number">168,960</span> pyexpat.pyd</div><div class="line"><span class="number">2017/08/29</span>  <span class="number">14</span>:<span class="number">34</span>         <span class="number">3</span>,<span class="number">927,552</span> python33.dll</div><div class="line"><span class="number">2014/03/10</span>  <span class="number">00</span>:<span class="number">35</span>            <span class="number">10</span>,<span class="number">752</span> select.pyd</div><div class="line"><span class="number">2014/03/10</span>  <span class="number">00</span>:<span class="number">35</span>           <span class="number">762,368</span> unicodedata.pyd</div><div class="line"><span class="number">2014/03/10</span>  <span class="number">00</span>:<span class="number">35</span>            <span class="number">62</span>,<span class="number">464</span> _bz2.pyd</div><div class="line"><span class="number">2014/03/10</span>  <span class="number">00</span>:<span class="number">35</span>           <span class="number">108,032</span> _ctypes.pyd</div><div class="line"><span class="number">2014/03/10</span>  <span class="number">00</span>:<span class="number">35</span>         <span class="number">1</span>,<span class="number">065,472</span> _hashlib.pyd</div><div class="line"><span class="number">2014/03/10</span>  <span class="number">00</span>:<span class="number">35</span>           <span class="number">135,168</span> _lzma.pyd</div><div class="line"><span class="number">2014/03/10</span>  <span class="number">00</span>:<span class="number">35</span>            <span class="number">51</span>,<span class="number">712</span> _socket.pyd</div><div class="line"><span class="number">2014/03/10</span>  <span class="number">00</span>:<span class="number">35</span>         <span class="number">1</span>,<span class="number">710,080</span> _ssl.pyd</div></pre></td></tr></table></figure>
+<h2 id="0x04-人生苦短，善用python"><a href="#0x04-人生苦短，善用python" class="headerlink" title="0x04 人生苦短，善用python"></a>0x04 人生苦短，善用python</h2><p>哇这么一大堆东西怕是看着看着都要睡着了哟……<br>（有空回来做个简易版，就算不简易至少也要把那么多指令整合到一个shell脚本里……）</p>
+<blockquote>
+<p><strong>CDLogin for Windows/ 自制简易版解决方案使用方法</strong><br>1) 到百度网盘下载：( 当前最新版本为 Release v1.0.1 )<br>=&gt; <a href="http://pan.baidu.com/s/1qYE2n1M" target="_blank" rel="external">公有传送门</a> 无需密码<br>=&gt; <a href="http://pan.baidu.com/s/1bXBtMY" target="_blank" rel="external">密码传送门</a> 密码：hf3w</p>
+<p>2) 解压到目录，然后使用cmd进入该目录，安装selenium：<br><code>$ pip install -i http://pypi.douban.com/simple/ selenium --trusted-host pypi.douban.com</code></p>
+<p>3) 把<code>user.conf</code>里的帐号密码改成你们自己的！<br>请务必改成你们自己的，即便是为了稳定性</p>
+<p>4) 双击打开<code>login.py</code><br>推荐把.py文件的默认打开方式设置为python.exe，<br>这样就可以直接运行而不需要再包一层shell来跑<code>$ python login.py</code>了</p>
+<p>5) 如果正常运转了，发送到桌面快捷方式，然后把这个快捷方式放进你的启动文件夹里即可<br>一般来说是个叫<code>Startup</code>或者<code>启动</code>的目录</p>
+<p>6) 尝试着为多平台努力中<br>为了程序容量不能过于庞大，就不把各平台的PhantomJS都放进去了，如果你不是windows平台，<br>请前往 <a href="http://phantomjs.org/download.html" target="_blank" rel="external">http://phantomjs.org/download.html</a> 下载你自己平台的PhantomJS，<br>解压之后在里面找到PhantomJS放在和login.py同目录下即可。</p>
+</blockquote>
+<h2 id="0x05-主文件SourceCode"><a href="#0x05-主文件SourceCode" class="headerlink" title="0x05 主文件SourceCode"></a>0x05 主文件SourceCode</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf8</span></div><div class="line"><span class="comment"># ========================================================</span></div><div class="line"><span class="comment">#   Copyright (C) 2017 All rights reserved.</span></div><div class="line"><span class="comment">#   </span></div><div class="line"><span class="comment">#   filename : CDLogin.py</span></div><div class="line"><span class="comment">#   author   : chendian@baidu.com</span></div><div class="line"><span class="comment">#   date     : 2017-08-29</span></div><div class="line"><span class="comment">#   desc     : Auto_Login Test</span></div><div class="line"><span class="comment"># ======================================================== </span></div><div class="line"></div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> selenium</div><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"></div><div class="line"><span class="keyword">import</span> platform</div><div class="line"><span class="comment"># "Windows" or "Linux"</span></div><div class="line">OS_TYPE = platform.system()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">auto_connect</span><span class="params">(un, pw)</span>:</span></div><div class="line">    print(<span class="string">'open a phantomJS browser...\n'</span>)</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        browser = webdriver.PhantomJS()</div><div class="line">    <span class="keyword">except</span> selenium.common.exceptions.WebDriverException <span class="keyword">as</span> e:</div><div class="line">        <span class="comment"># Message: 'phantomjs' executable needs to be in PATH.</span></div><div class="line">        print(<span class="string">"Current Version only contains Windows PhantomJS."</span>)</div><div class="line">        print(<span class="string">"You need phantomJS for your own platform as &lt;%s&gt;"</span> % OS_TYPE)</div><div class="line">        print(<span class="string">"Please visit http://phantomjs.org/download.html for downloading"</span>)</div><div class="line">        print(<span class="string">"Download and unzip and find PhantomJS, copy it beside this python file."</span>)</div><div class="line">        print(<span class="string">"For further info, visit http://blog.csdn.net/okcd00/article/details/77677326#t10"</span>)</div><div class="line">        os.system(<span class="string">'pause'</span>)</div><div class="line">        exit()</div><div class="line">    </div><div class="line">    browser.get(<span class="string">'http://159.226.39.22'</span>)</div><div class="line"></div><div class="line">    username, password = un, pw</div><div class="line"></div><div class="line">    browser.find_element_by_id(<span class="string">'username'</span>).send_keys(username)</div><div class="line">    browser.find_element_by_id(<span class="string">'password'</span>).send_keys(password)</div><div class="line">    <span class="comment">#browser.find_element_by_id('button').click()</span></div><div class="line">    browser.find_element_by_id(<span class="string">'form2'</span>).submit()</div><div class="line"></div><div class="line">    print(<span class="string">'waiting 10s for posting...'</span>)</div><div class="line">    time.sleep(<span class="number">10</span>)</div><div class="line">    browser.close()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_conf</span><span class="params">()</span>:</span></div><div class="line">    un = <span class="string">''</span></div><div class="line">    pw = <span class="string">''</span></div><div class="line">    ps = <span class="string">''</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        <span class="keyword">with</span> open(<span class="string">'user.conf'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> file:</div><div class="line">            <span class="keyword">for</span> line <span class="keyword">in</span> file.readlines():</div><div class="line">                line = line.strip()</div><div class="line">                <span class="keyword">if</span> line == <span class="string">''</span>:</div><div class="line">                    <span class="keyword">continue</span></div><div class="line">                <span class="keyword">if</span> line[<span class="number">0</span>] == <span class="string">'#'</span>:</div><div class="line">                    <span class="keyword">continue</span></div><div class="line">                <span class="keyword">if</span> line.split(<span class="string">'='</span>)[<span class="number">0</span>].strip() == <span class="string">'username'</span>:</div><div class="line">                    un = line.split(<span class="string">'='</span>)[<span class="number">1</span>].strip()</div><div class="line">                <span class="keyword">elif</span> line.split(<span class="string">'='</span>)[<span class="number">0</span>].strip() == <span class="string">'password'</span>:</div><div class="line">                    pw = line.split(<span class="string">'='</span>)[<span class="number">1</span>].strip()</div><div class="line">                <span class="keyword">elif</span> line.split(<span class="string">'='</span>)[<span class="number">0</span>].strip() == <span class="string">'pingsite'</span>:</div><div class="line">                    ps = line.split(<span class="string">'='</span>)[<span class="number">1</span>].strip()</div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    print(<span class="string">'user.conf is a error format. \n'</span>)</div><div class="line">    <span class="keyword">except</span> IOError <span class="keyword">as</span> e:</div><div class="line">        print(<span class="string">'cannot read user.conf file--'</span> + str(e) + <span class="string">', please create user.conf file. \n'</span>)</div><div class="line">    <span class="keyword">return</span> un, pw, ps</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_connect</span><span class="params">(ps)</span>:</span></div><div class="line">    <span class="keyword">if</span> OS_TYPE == <span class="string">'Windows'</span>:</div><div class="line">        flag = os.system(<span class="string">'ping '</span> + ps)</div><div class="line">    <span class="keyword">elif</span> OS_TYPE == <span class="string">'Linux'</span>:</div><div class="line">        flag = os.system(<span class="string">'ping -c 3 '</span> + ps)</div><div class="line">    <span class="keyword">if</span> flag == <span class="number">0</span>:</div><div class="line">        <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">con_connect</span><span class="params">(un, pw, ps)</span>:</span></div><div class="line">    <span class="keyword">if</span> is_connect(ps):</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        auto_connect(un, pw)</div><div class="line">        <span class="keyword">if</span> is_connect(ps):</div><div class="line">            print(<span class="string">'\nConnect internet success.\n'</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            print(<span class="string">'\nConnect internet Failed.\n'</span>)</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    print(<span class="string">"starting..."</span>)</div><div class="line">    os.system(<span class="string">'MODE con: COLS=128 LINES=32 &amp; TITLE Welcome to CDLogin'</span>)</div><div class="line">    </div><div class="line">    <span class="keyword">from</span> logo <span class="keyword">import</span> show_logo</div><div class="line">    <span class="comment"># show_logo()</span></div><div class="line">    os.system(<span class="string">'cls'</span>)</div><div class="line">    </div><div class="line">    time.sleep(<span class="number">1</span>)</div><div class="line">    os.system(<span class="string">"color 0A"</span>)</div><div class="line">    os.system(<span class="string">'MODE con: COLS=64 LINES=16 &amp; TITLE CD_Auto_Login is working'</span>)</div><div class="line">    </div><div class="line">    un, pw, ps = read_conf()</div><div class="line">    </div><div class="line">    <span class="keyword">while</span> <span class="number">1</span>:</div><div class="line">        print(<span class="string">'=== current time ==='</span>)</div><div class="line">        os.system(<span class="string">"DATE /T &amp; TIME /T"</span>)</div><div class="line">        </div><div class="line">        print(<span class="string">'If you want to stop, input Ctrl+C to break.'</span>)</div><div class="line">        con_connect(un, pw, ps)</div><div class="line">        </div><div class="line">        print(<span class="string">'\nNext check in 10 mins ...\n'</span>)</div><div class="line">        time.sleep(<span class="number">10</span>*<span class="number">60</span>) <span class="comment">#Test</span></div><div class="line">        os.system(<span class="string">'cls'</span>)</div></pre></td></tr></table></figure>
+<h2 id="0xFF-单文件可行版本"><a href="#0xFF-单文件可行版本" class="headerlink" title="0xFF 单文件可行版本"></a>0xFF 单文件可行版本</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf8</span></div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> random</div><div class="line"><span class="keyword">import</span> urllib</div><div class="line"><span class="keyword">import</span> urllib2</div><div class="line"><span class="keyword">import</span> platform</div><div class="line"><span class="keyword">import</span> cookielib</div><div class="line"></div><div class="line">uname = <span class="string">"test"</span> <span class="comment"># Change to your username</span></div><div class="line">passwd = <span class="string">"123456"</span> <span class="comment"># Change to your password</span></div><div class="line">ip = <span class="string">"10.63.0.222"</span> <span class="comment"># Modify this to your own ip </span></div><div class="line">interval_time = <span class="number">5</span>*<span class="number">60</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(uname, passwd)</span>:</span></div><div class="line">    cj = cookielib.CookieJar()</div><div class="line">    opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))</div><div class="line">    opener.addheaders = [(<span class="string">'User-agent'</span>,<span class="string">'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'</span>)]</div><div class="line">    urllib2.install_opener(opener)</div><div class="line">    data = &#123;</div><div class="line">        <span class="string">"action"</span>: <span class="string">"login"</span>,</div><div class="line">        <span class="string">"username"</span>: uname,</div><div class="line">        <span class="string">"password"</span>: passwd,</div><div class="line">        <span class="string">"ac_id"</span>: <span class="number">1</span>,</div><div class="line">        <span class="string">"user_ip"</span>: ip,</div><div class="line">        <span class="string">"ip"</span>: ip,</div><div class="line">        <span class="string">"nas_ip"</span>: <span class="string">''</span>,</div><div class="line">        <span class="string">"user_mac"</span>: <span class="string">''</span>,</div><div class="line">        <span class="string">"save_me"</span>: <span class="number">0</span>,</div><div class="line">        <span class="string">"type"</span>: <span class="number">1</span>,</div><div class="line">        <span class="string">"n"</span>: <span class="number">100</span>,</div><div class="line">        <span class="string">"ajax"</span>: <span class="number">1</span></div><div class="line">    &#125;</div><div class="line">    req = urllib2.Request(<span class="string">"http://159.226.39.22/include/auth_action.php"</span>, urllib.urlencode(data))</div><div class="line">    req.add_header(<span class="string">"Referer"</span>,<span class="string">"http://159.226.39.22/"</span>)</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        resp = urllib2.urlopen(req)</div><div class="line">        res = resp.read()</div><div class="line">        <span class="keyword">print</span> res</div><div class="line">        <span class="keyword">if</span> <span class="string">'login_ok'</span> <span class="keyword">in</span> res:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">'log in error'</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">logout</span><span class="params">(uname, passwd)</span>:</span></div><div class="line">    cj = cookielib.CookieJar()</div><div class="line">    opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))</div><div class="line">    opener.addheaders = [(<span class="string">'User-agent'</span>,<span class="string">'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'</span>)]</div><div class="line">    urllib2.install_opener(opener)</div><div class="line">    data = &#123;</div><div class="line">        <span class="string">"action"</span>: <span class="string">"logout"</span>,</div><div class="line">        <span class="string">"username"</span>: uname,</div><div class="line">        <span class="string">"password"</span>: passwd,</div><div class="line">        <span class="string">"ajax"</span>: <span class="number">1</span></div><div class="line">    &#125;</div><div class="line">    req = urllib2.Request(<span class="string">"http://159.226.39.22/include/auth_action.php"</span>, urllib.urlencode(data))</div><div class="line">    req.add_header(<span class="string">"Referer"</span>,<span class="string">"http://159.226.39.22/"</span>)</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        resp = urllib2.urlopen(req)</div><div class="line">        res = resp.read()</div><div class="line">        <span class="keyword">print</span> res</div><div class="line">        <span class="keyword">if</span> <span class="string">"网络已断开"</span> <span class="keyword">in</span> res <span class="keyword">or</span> <span class="string">"未曾连接到网络"</span> <span class="keyword">in</span> res:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">'log out error'</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">internet_on</span><span class="params">()</span>:</span></div><div class="line">    os_type = platform.system()</div><div class="line">    <span class="keyword">if</span> os_type == <span class="string">"Windows"</span>:</div><div class="line">        flag = os.system(<span class="string">'ping www.baidu.com'</span>)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        flag = os.system(<span class="string">'ping -c 3 -t 3 www.baidu.com'</span>)</div><div class="line">    <span class="keyword">return</span> flag == <span class="number">0</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">logout_login</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">if</span> logout(uname, passwd):</div><div class="line">        <span class="keyword">print</span> <span class="string">'logout at: '</span>, time.asctime()</div><div class="line">        time.sleep(<span class="number">5</span>)</div><div class="line">        <span class="keyword">if</span> login(uname, passwd):</div><div class="line">            <span class="keyword">print</span> <span class="string">'login at: '</span>, time.asctime()</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">print</span> <span class="string">'login fails at: '</span>, time.asctime()</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">'logout fails at: '</span>, time.asctime()</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    <span class="keyword">if</span> uname == <span class="string">"lihongwei_test"</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">"please set username, password and ip!"</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> internet_on():</div><div class="line">                logout_login()</div><div class="line">            time.sleep(interval_time)</div></pre></td></tr></table></figure>
+<h2 id="UpdateLog"><a href="#UpdateLog" class="headerlink" title="UpdateLog"></a>UpdateLog</h2><p>[2017/09/04] ver 1.1.0 (Author: @lhw446, Original: @cyx)</p>
+<ul>
+<li>Add single file script.</li>
+</ul>
+<p>[2017/08/29] ver 1.0.1  (Feat: @lhw446)</p>
+<ul>
+<li>Add guide for downloading and setting phantomJS</li>
+<li>Add available platforms (MAC platform as Linux, maybe Darwin)</li>
+</ul>
+<p>[2017/08/29] ver 1.0.0 (Feat: @gongshijun)</p>
+<ul>
+<li>Basic function for auto_login for ICT</li>
+</ul>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/selenium/">#selenium</a> <a href="/tags/PhantomJS/">#PhantomJS</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+    <div class="comments">
+        
+<div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+    </div>
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    Coding the world.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2017-09/【O2OTM】你的搜索透露了你的喜好——跨模态推荐.html">【O2OTM】你的搜索透露了你的喜好——跨模态推荐</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017-08/【selenium】Windows平台下使用python自动登陆网关.html">【selenium】Windows平台下使用python自动登陆网关</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017-06/【选课脚本】用Python网页爬虫来进行选(qiang)课.html">【选课脚本】用Python网页爬虫来进行选(qiang)课</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017-02/【Theano】环境配置——“g++ not detected”.html">【Theano】环境配置——“g++ Not Detected”</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/论文阅读/">论文阅读</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/环境配置/">环境配置</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/功能脚本/">功能脚本</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/okcd00/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://twitter.com/okcd00/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:okcd00@vip.qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="http://blog.csdn.net/okcd00/rss/list">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @<a href="https://github.com/okcd00/">Chen Dian</a>. 2017 All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script type="text/javascript" color="255,255,255" opacity='0.7' zIndex="-2" count="99" src="js/canvas.js"></script>
+
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'okcd00';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>
