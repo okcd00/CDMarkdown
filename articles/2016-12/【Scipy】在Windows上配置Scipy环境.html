@@ -20,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="CDPlayer&#39;s Blog"/>
+        <meta property="og:title" content="【Scipy】在Windows上配置Scipy环境"/>
     
 
     <!--Open Graph Description-->
@@ -33,7 +33,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -44,7 +44,7 @@
 
     <!-- Title -->
     
-    <title>PhantomJS - CDPlayer&#39;s Blog</title>
+    <title>【Scipy】在Windows上配置Scipy环境 - CDPlayer&#39;s Blog</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -137,9 +137,7 @@
 <div class="container">
 
     <!-- Main Content -->
-    
-
-<div class="row">
+    <div class="row">
     <div class="col-sm-12">
 
         <!--Title and Logo-->
@@ -147,23 +145,75 @@
     <div class="logo">
         <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
         
-            <h1 id="main-title" class="title">#PhantomJS</h1>
-        
     </div>
 </header>
 
-        <section class="main archive-container">
+        <section class="main">
             
-                <div class="archive-post">
-    <a href="/articles/2017-08/【Selenium】Windows平台下使用python自动登陆网关.html">
-        <span class="archive-date">
-            Aug 2017
-        </span>
-        【Selenium】Windows平台下使用python自动登陆网关
-    </a>
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/articles/2016-12/【Scipy】在Windows上配置Scipy环境.html">
+                【Scipy】在Windows上配置Scipy环境
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-12-02</span>
+            
+            
+                <a href="#disqus_thread" class="comments">留言</a>
+            
+            
+                <span class="category">
+                    <a href="/categories/环境配置/">环境配置</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>配环境真乃万事开头难的典范……<br>Scipy是我配了快一万年的东西……<br>常用的像是Sklearn都需要包含这个包<br>（唔，确实对于大多数人来说很简单，但是吾辈是真的经历了千辛万苦，甚至还使用Anaconda来临时用以跑程序）<br>今天，终于成功了QAQ<br><a id="more"></a></p>
+<p>事前准备：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip <span class="keyword">install</span> wheel</div></pre></td></tr></table></figure>
+<p>WHEEL，用来安装whl文件的程序</p>
+<p><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy" target="_blank" rel="external">http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy</a><br>NUMPY+MKL，请务必注意适合自己的版本，如Python2.7</p>
+<p><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy" target="_blank" rel="external">http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy</a><br>SCIPY，请务必注意适合自己的版本，如Python2.7，并且请在NUMPY安装完毕后安装</p>
+<p>whl文件的安装方式：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wheel <span class="keyword">install</span> xxxxx.whl</div></pre></td></tr></table></figure></p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Scipy/">#Scipy</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+    <div class="comments">
+        
+<div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-            
+
+
+
+    </div>
+    
+
+</div>
         </section>
+
     </div>
 </div>
 
@@ -314,7 +364,7 @@
         var dsq = document.createElement('script');
         dsq.type = 'text/javascript';
         dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>

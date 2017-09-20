@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="To be more curious and less lazy.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Chen Dian">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="【TensorFlow】Windows10下配置TensorFlow环境"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="To be more curious and less lazy." />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="CDPlayer&#39;s Blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>【TensorFlow】Windows10下配置TensorFlow环境 - CDPlayer&#39;s Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+	
+	<!-- star map -->
+	<script type="text/javascript" color="255,255,255" opacity='0.75' zIndex="-2" count="88" src="js/canvas.js"></script>
+	
+	<!-- Earth -->
+	<script type="text/javascript" src="//rf.revolvermaps.com/0/0/6.js?i=5mihyim0z76&amp;m=7&amp;c=66ccff&amp;cr1=ff0000&amp;f=arial&amp;l=0&amp;lx=200&amp;ly=-20&amp;hi=10" async="async"></script>
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/wlog">
+                    WorkLog
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/articles/2017-05/【TensorFlow】Windows10下配置TensorFlow环境.html">
+                【TensorFlow】Windows10下配置TensorFlow环境
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2017-05-05</span>
+            
+            
+                <a href="#disqus_thread" class="comments">留言</a>
+            
+            
+                <span class="category">
+                    <a href="/categories/环境配置/">环境配置</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h2><p>前言什么的也懒得说了……<br>总之：<br>用<code>TeamViewer</code>中转+<code>VNC</code>连接来图形化，<br><code>SecureCRT</code>两重<code>ssh</code>跳转来改代码，<br>以及<code>paste.ubuntu.com</code>来复制粘贴，<br>这样的日子我已经受够了…… 我要在我的windows上配一个！</p>
+<a id="more"></a>
+<h2 id="0x01-官方说明"><a href="#0x01-官方说明" class="headerlink" title="0x01 官方说明"></a>0x01 官方说明</h2><p>Installing with Anaconda</p>
+<p>The Anaconda installation is community supported, not officially supported.</p>
+<p>Take the following steps to install TensorFlow in an Anaconda environment:</p>
+<p>Follow the instructions on the Anaconda download site to download and install Anaconda.</p>
+<p>Create a conda environment named tensorflow by invoking the following command:<br>使用如下指令创建一个名为tensorflow的conda环境：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">C:</span>&gt; conda create -n tensorflow</div></pre></td></tr></table></figure></p>
+<p>Activate the conda environment by issuing the following command:<br>可以用如下指令来激活conda环境：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">C:&gt; <span class="built_in">activate</span> tensorflow</div><div class="line"> (tensorflow)C:&gt;  <span class="comment"># Your prompt should change</span></div></pre></td></tr></table></figure></p>
+<p>Issue the appropriate command to install TensorFlow inside your conda environment. To install the CPU-only version of TensorFlow, enter the following command:</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(tensorflow)C:&gt; pip install --ignore-installed --upgrade https:<span class="regexp">//</span>storage.googleapis.com<span class="regexp">/tensorflow/</span>windows<span class="regexp">/cpu/</span>tensorflow-<span class="number">1.1</span>.<span class="number">0</span>-cp35-cp35m-win_amd64.whl</div></pre></td></tr></table></figure>
+<p>To install the GPU version of TensorFlow, enter the following command (on a single line):</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(tensorflow)C:&gt; pip install --ignore-installed --upgrade https:<span class="regexp">//</span>storage.googleapis.com<span class="regexp">/tensorflow/</span>windows<span class="regexp">/gpu/</span>tensorflow_gpu-<span class="number">1.1</span>.<span class="number">0</span>-cp35-cp35m-win_amd64.whl</div></pre></td></tr></table></figure>
+<h2 id="0x02-尝试"><a href="#0x02-尝试" class="headerlink" title="0x02 尝试"></a>0x02 尝试</h2><p>于是我跑去装了个<a href="https://www.continuum.io/downloads#windows" target="_blank" rel="external">Anaconda</a>，<br><img src="http://img.blog.csdn.net/20170504134645156?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvb2tjZDAw/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="anaconda"></p>
+<p>装好之后愉快的开始乱敲：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">C:</span>&gt; conda create -n tensorflow</div><div class="line"><span class="string">C:</span>&gt; activate tensorflow</div><div class="line"> (tensorflow)<span class="string">C:</span>&gt;</div></pre></td></tr></table></figure>
+<p>conda环境是需要有的，虽然我开一个环境是因为dalao们都这么开，但是实际上这是很有意义的，比如……你瞎配环境配炸了怎么办呢对不对，另一个方面也是为了不影响你原生系统里的环境，在这个你自己设定的env里就是一个纯净环境，转为某种工程环境配置的，在各种env之间切换，也比较高效和稳定。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(tensorflow)C:&gt; pip install --ignore-installed --upgrade https:<span class="regexp">//</span>storage.googleapis.com<span class="regexp">/tensorflow/</span>windows<span class="regexp">/gpu/</span>tensorflow_gpu-<span class="number">1.1</span>.<span class="number">0</span>-cp35-cp35m-win_amd64.whl</div></pre></td></tr></table></figure>
+<p>哎？为什么用不了呢，于是我注意到了一件事情：</p>
+<blockquote>
+<p>tensorflow_gpu-1.1.0-cp <strong>35</strong> -cp <strong>35</strong> m-win_amd64.whl</p>
+</blockquote>
+<p>原来如此，python版本变成python3.5.x就可以了对吧~<br>但是，这个conda是python3.6的呀，我总不能去archive里看着连python版本都不标明的仓库里一个一个试哪个是python3.5吧……</p>
+<p>这个时候conda环境的好处就来啦~ 我们可以在这个名为tensorflow的环境里使用python3.5，还不影响外面的python3.6~并且装好tensorflow之后和这个python3.5完美适配的在这个环境里用来敲tf代码：</p>
+<p><img src="http://img.blog.csdn.net/20170504140033272?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvb2tjZDAw/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="conda"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">C:\Users\Work&gt; activate tensorflow</div><div class="line">(tensorflow) C:\Users\Work&gt; conda install python==3.5</div><div class="line">Fetching package metadata ...........</div><div class="line">Solving package specifications: .</div><div class="line"></div><div class="line">Package plan for installation in environment C:\ProgramData\Anaconda3\envs\tensorflow:</div><div class="line"></div><div class="line">The following NEW packages will be INSTALLED:</div><div class="line"></div><div class="line">    msvc_runtime: 1.0.1-vc14_0  [vc14]</div><div class="line">    pip:          9.0.1-py35_1</div><div class="line">    python:       3.5.0-4</div><div class="line">    setuptools:   27.2.0-py35_1</div><div class="line">    wheel:        0.29.0-py35_0</div><div class="line"></div><div class="line">Proceed ([y]/n)?</div></pre></td></tr></table></figure>
+<p>哈哈，果不其然，可以装啦可以装啦——</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">(tensorflow) C:\Users\Work&gt;pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/windows/<span class="meta">cpu</span>/tensorflow-<span class="number">1.1</span><span class="meta">.0</span>-cp35-cp35m-win_amd64.whl</div><div class="line">Collecting tensorflow==<span class="number">1.1</span><span class="meta">.0</span> from https://storage.googleapis.com/tensorflow/windows/<span class="meta">cpu</span>/tensorflow-<span class="number">1.1</span><span class="meta">.0</span>-cp35-cp35m-win_amd64.whl</div><div class="line">  Downloading https://storage.googleapis.com/tensorflow/windows/<span class="meta">cpu</span>/tensorflow-<span class="number">1.1</span><span class="meta">.0</span>-cp35-cp35m-win_amd64.whl (<span class="number">19.</span>4MB)</div><div class="line">    <span class="number">69</span>% |██████████████████████▏         | <span class="number">13.</span>4MB 877kB/s eta <span class="number">0</span>:<span class="number">00</span>:<span class="number">07</span></div><div class="line"></div><div class="line">......</div><div class="line"></div><div class="line">Installing collected packages: wheel, numpy, six, pyparsing, packaging, appdirs, setuptools, protobuf, werkzeug, tensorflow</div><div class="line">Successfully installed appdirs-<span class="number">1.4</span><span class="meta">.3</span> numpy-<span class="number">1.12</span><span class="meta">.1</span> packaging-<span class="number">16.8</span> protobuf-<span class="number">3.3</span><span class="meta">.0</span> pyparsing-<span class="number">2.2</span><span class="meta">.0</span> setuptools-<span class="number">35.0</span><span class="meta">.2</span> six-<span class="number">1.10</span><span class="meta">.0</span> tensorflow-<span class="number">1.1</span><span class="meta">.0</span> werkzeug-<span class="number">0.12</span><span class="meta">.1</span> wheel-<span class="number">0.29</span><span class="meta">.0</span></div></pre></td></tr></table></figure>
+<p>顺便再把GPU版本的也装了吧——</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">(tensorflow) C:\Users\Work&gt;pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/windows/gpu/tensorflow_gpu-1.1.0-cp35-cp35m-win_amd64.whl</div><div class="line">Collecting tensorflow-gpu==1.1.0 from https://storage.googleapis.com/tensorflow/windows/gpu/tensorflow_gpu-1.1.0-cp35-cp35m-win_amd64.whl</div><div class="line">  Downloading https://storage.googleapis.com/tensorflow/windows/gpu/tensorflow_gpu-1.1.0-cp35-cp35m-win_amd64.whl (48.5MB)</div><div class="line">    4% |█▋                              | 2.4MB 1.1MB/s eta 0:00:41</div><div class="line"></div><div class="line">......</div><div class="line"></div><div class="line">Installing collected packages: wheel, numpy, pyparsing, six, packaging, appdirs, setuptools, protobuf, werkzeug, tensorflow-gpu</div><div class="line">Successfully installed appdirs-1.4.3 numpy-1.12.1 packaging-16.8 protobuf-3.3.0 pyparsing-2.2.0 setuptools-35.0.2 six-1.10.0 tensorflow-gpu-1.1.0 werkzeug-0.12.1 wheel-0.29.0</div></pre></td></tr></table></figure>
+<h2 id="0x03-测试运行"><a href="#0x03-测试运行" class="headerlink" title="0x03 测试运行"></a>0x03 测试运行</h2><p>安装完了哎……<br>真的假的？<br>跑跑试试</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">(tensorflow) C:\Users\Work&gt;python</div><div class="line">Python 3.5.0 |Continuum Analytics, Inc.| (default, Dec  1 2015, 11:46:22) [MSC v.1900 64 bit (AMD64)] on win32</div><div class="line">Type "help", "copyright", "credits" or "license" for more information.</div><div class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; import tensorflow as tf</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; hello = tf.constant(<span class="string">'Hello, TensorFlow!'</span>)</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; sess = tf.Session()</span></div><div class="line">2017-05-04 13:48:07.019445: W c:\tf_jenkins\home\workspace\release-win\device\cpu\os\windows\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE instructions, but these are available on your machine and could speed up CPU computations.</div><div class="line">2017-05-04 13:48:07.020593: W c:\tf_jenkins\home\workspace\release-win\device\cpu\os\windows\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE2 instructions, but these are available on your machine and could speed up CPU computations.</div><div class="line">2017-05-04 13:48:07.021313: W c:\tf_jenkins\home\workspace\release-win\device\cpu\os\windows\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE3 instructions, but these are available on your machine and could speed up CPU computations.</div><div class="line">2017-05-04 13:48:07.022356: W c:\tf_jenkins\home\workspace\release-win\device\cpu\os\windows\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.</div><div class="line">2017-05-04 13:48:07.024544: W c:\tf_jenkins\home\workspace\release-win\device\cpu\os\windows\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.</div><div class="line">2017-05-04 13:48:07.026923: W c:\tf_jenkins\home\workspace\release-win\device\cpu\os\windows\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.</div><div class="line">2017-05-04 13:48:07.028016: W c:\tf_jenkins\home\workspace\release-win\device\cpu\os\windows\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.</div><div class="line">2017-05-04 13:48:07.028824: W c:\tf_jenkins\home\workspace\release-win\device\cpu\os\windows\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.</div><div class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; sess.run(hello)</span></div><div class="line">b'Hello, TensorFlow!'</div></pre></td></tr></table></figure>
+<p>虽然不知道蹦出来些什么，不过看上去是装好了的样子，可喜可贺可喜可贺~</p>
+<h2 id="0x04-后记"><a href="#0x04-后记" class="headerlink" title="0x04 后记"></a>0x04 后记</h2><blockquote>
+<p><strong>Fold runs under Linux</strong>; we have not tested it on other platforms. Python 2.7 and 3.3+ are both supported. We recommend installing using Virtualenv and pip. See here for instructions on installing from sources, if that’s how you roll. If you run into trouble, the TensorFlow main site has a list of common problems with some solutions that might be helpful.</p>
+<p>Please note that Fold requires TensorFlow 1.0; it is not compatible with earlier versions due to breaking API changes.</p>
+</blockquote>
+<p>Tensorflow_Fold 就别想了QvQ<br>容我哭一会儿</p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/TensorFlow/">#TensorFlow</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+    <div class="comments">
+        
+<div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+    </div>
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    Coding the world.
+                </p>
+				<script type="text/javascript" src="//rf.revolvermaps.com/0/0/6.js?i=5mihyim0z76&amp;m=7&amp;c=66ccff&amp;cr1=ff0000&amp;f=arial&amp;l=0&amp;lx=200&amp;ly=-20&amp;hi=10" async="async"></script>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/articles/2017-09/【Pytorch】Windows10下配置Pytorch环境.html">【Pytorch】Windows10下配置Pytorch环境</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/articles/2017-09/【O2OTM】你的搜索透露了你的喜好——跨模态推荐.html">【O2OTM】你的搜索透露了你的喜好——跨模态推荐</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/articles/2017-08/【Selenium】Windows平台下使用python自动登陆网关.html">【Selenium】Windows平台下使用python自动登陆网关</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/articles/2017-08/【列表解析式】Python的单行操作秀.html">【列表解析式】Python的单行操作秀</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/论文阅读/">论文阅读</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/编程记忆/">编程记忆</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/功能脚本/">功能脚本</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/环境配置/">环境配置</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/okcd00/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://twitter.com/okcd00/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:okcd00@vip.qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="http://blog.csdn.net/okcd00/rss/list">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @<a href="https://github.com/okcd00/">Chen Dian</a>. 2017 All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'okcd00';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<script type="text/javascript" color="0,255,255" opacity='0.75' zIndex="-2" count="75" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+
+</body>
+
+</html>

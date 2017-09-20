@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="To be more curious and less lazy.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Chen Dian">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="【codecs.BOM】使用Python程序输出csv格式数据"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="To be more curious and less lazy." />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="CDPlayer&#39;s Blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>【codecs.BOM】使用Python程序输出csv格式数据 - CDPlayer&#39;s Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+	
+	<!-- star map -->
+	<script type="text/javascript" color="255,255,255" opacity='0.75' zIndex="-2" count="88" src="js/canvas.js"></script>
+	
+	<!-- Earth -->
+	<script type="text/javascript" src="//rf.revolvermaps.com/0/0/6.js?i=5mihyim0z76&amp;m=7&amp;c=66ccff&amp;cr1=ff0000&amp;f=arial&amp;l=0&amp;lx=200&amp;ly=-20&amp;hi=10" async="async"></script>
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/wlog">
+                    WorkLog
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/articles/2016-03/【codecs.BOM】使用Python程序输出csv格式数据.html">
+                【codecs.BOM】使用Python程序输出csv格式数据
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-03-18</span>
+            
+            
+                <a href="#disqus_thread" class="comments">留言</a>
+            
+            
+                <span class="category">
+                    <a href="/categories/编程记忆/">编程记忆</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>这些天做一个数据处理的任务：<br>要求是输出一个csv格式的文件。<br>每次用NotePad++打开都正常，一用excel打开就一万个乱码，<br>好不容易乱码没了，用作分隔符的逗号也进单元格去了（变成单列了）</p>
+<p>辛苦的查原因调试代码测试输出过程略去（以后要是有心情再来写好了）……<br>重点是！~<br>把能用的模板记录一下，以后说不定还要用呢QwQ</p>
+<a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">[Convert2Csv.py]</div><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> codecs  </div><div class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</div><div class="line"></div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> csv</div><div class="line"><span class="keyword">import</span> urllib2</div><div class="line"><span class="keyword">import</span> commands</div><div class="line"><span class="keyword">import</span> ConfigParser</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span> :</div><div class="line">    infile = <span class="string">"./outSort"</span></div><div class="line">    <span class="keyword">with</span> open(<span class="string">'Features.csv'</span>, <span class="string">'wb+'</span>) <span class="keyword">as</span> csvfile:</div><div class="line">        csvfile.write(codecs.BOM_UTF8) </div><div class="line">        spamwriter = csv.writer(csvfile,dialect=<span class="string">'excel'</span>)</div><div class="line">        spamwriter.writerow([<span class="string">'Sign'</span>, <span class="string">'Count'</span>, <span class="string">'Feature'</span>, <span class="string">'Info'</span>])</div><div class="line">        <span class="keyword">for</span> each <span class="keyword">in</span> [line <span class="keyword">for</span> line <span class="keyword">in</span> file(infile)] :</div><div class="line">            list = [<span class="string">'0'</span>]</div><div class="line">            sublist1 = [<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>]</div><div class="line">            sublist2 = [<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>]</div><div class="line">            segs = each.split(<span class="string">'\t'</span>)</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> segs :</div><div class="line">                <span class="keyword">break</span></div><div class="line">            list.append(segs[<span class="number">0</span>])</div><div class="line">            list.append(segs[<span class="number">1</span>])</div><div class="line">            list.append(segs[<span class="number">2</span>])</div><div class="line">            <span class="keyword">if</span> segs[<span class="number">3</span>]:</div><div class="line">                sublist1.append(segs[<span class="number">3</span>])</div><div class="line">            <span class="keyword">if</span> segs[<span class="number">4</span>]:</div><div class="line">                sublist2.append(segs[<span class="number">4</span>])</div><div class="line">            spamwriter.writerow(list)</div><div class="line">            spamwriter.writerow(sublist1)</div><div class="line">            spamwriter.writerow(sublist2)</div><div class="line">```        </div><div class="line">        </div><div class="line"></div><div class="line">输入：UTF<span class="number">-8</span>编码文件</div><div class="line">输出：Scv格式数据，使用Excel打开或NotePad打开中文均不乱码</div><div class="line"></div><div class="line">要点：</div><div class="line">``` python</div><div class="line"><span class="keyword">with</span> open(<span class="string">'Features.csv'</span>, <span class="string">'wb+'</span>) <span class="keyword">as</span> csvfile:</div><div class="line">        csvfile.write(codecs.BOM_UTF8) </div><div class="line">        spamwriter = csv.writer(csvfile,dialect=<span class="string">'excel'</span>)</div></pre></td></tr></table></figure>
+<p>CSV写入函数解释：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">spamwriter.writerow(list) </div><div class="line"><span class="comment"># 传入一个list即可，写一行，每个元素为当前行的一列，若需要空行，请务必增加一个空字符串元素</span></div></pre></td></tr></table></figure>
+<p>【Updated 2016/03/18】<br>现在难度大了点，要合并单元格，于是就学着用了用xlwt和xlrd：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> codecs  </div><div class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</div><div class="line"></div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> csv</div><div class="line"><span class="keyword">import</span> xlrd</div><div class="line"><span class="keyword">import</span> xlwt</div><div class="line"><span class="keyword">import</span> urllib2</div><div class="line"><span class="keyword">import</span> commands</div><div class="line"><span class="keyword">import</span> ConfigParser</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">MakeCsv</span><span class="params">()</span>:</span></div><div class="line">    infile = <span class="string">"./outSort"</span></div><div class="line">    <span class="keyword">with</span> open(<span class="string">'Features.csv'</span>, <span class="string">'wb+'</span>) <span class="keyword">as</span> csvfile:</div><div class="line">        csvfile.write(codecs.BOM_UTF8) </div><div class="line">        spamwriter = csv.writer(csvfile,dialect=<span class="string">'excel'</span>)</div><div class="line">        spamwriter.writerow([<span class="string">'Sign'</span>, <span class="string">'Count'</span>, <span class="string">'Feature'</span>, <span class="string">'Info'</span>])</div><div class="line">        <span class="keyword">for</span> each <span class="keyword">in</span> [line <span class="keyword">for</span> line <span class="keyword">in</span> file(infile)] :</div><div class="line">            list = [<span class="string">'0'</span>]</div><div class="line">            sublist1 = [<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>]</div><div class="line">            sublist2 = [<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>]</div><div class="line">            segs = each.split(<span class="string">'\t'</span>)</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> segs :</div><div class="line">                <span class="keyword">break</span></div><div class="line">            list.append(segs[<span class="number">0</span>])</div><div class="line">            list.append(segs[<span class="number">1</span>])</div><div class="line">            list.append(segs[<span class="number">2</span>])</div><div class="line">            <span class="keyword">if</span> segs[<span class="number">3</span>]:</div><div class="line">                sublist1.append(segs[<span class="number">3</span>])</div><div class="line">            <span class="keyword">if</span> segs[<span class="number">4</span>]:</div><div class="line">                sublist2.append(segs[<span class="number">4</span>])</div><div class="line">            spamwriter.writerow(list)</div><div class="line">            spamwriter.writerow(sublist1)</div><div class="line">            spamwriter.writerow(sublist2)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">MakeInput</span><span class="params">()</span> :</span></div><div class="line">    (status, output) = commands.getstatusoutput(<span class="string">'sort -k1 -n -r outData &gt; outSort'</span>)</div><div class="line">            </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Combine</span><span class="params">()</span> :</span></div><div class="line">    <span class="comment"># Create a Workbook</span></div><div class="line">    f = xlwt.Workbook()</div><div class="line">    sheet = f.add_sheet(<span class="string">u'Feature'</span>,cell_overwrite_ok=<span class="keyword">True</span>)</div><div class="line">    <span class="comment"># sheet.write(codecs.BOM_UTF8)</span></div><div class="line">    </div><div class="line">    <span class="comment"># Generate 0-th line</span></div><div class="line">    row0 = [<span class="string">'Sign'</span>, <span class="string">'Count'</span>, <span class="string">'Feature'</span>, <span class="string">'Info'</span>]</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(row0)):</div><div class="line">        sheet.write(<span class="number">0</span>,i,row0[i])</div><div class="line">        </div><div class="line">    <span class="comment"># Generate Others</span></div><div class="line">    cur_row = <span class="number">1</span></div><div class="line">    infile = <span class="string">"./outSort"</span></div><div class="line">    <span class="keyword">for</span> each <span class="keyword">in</span> [line.decode(<span class="string">'utf-8'</span>) <span class="keyword">for</span> line <span class="keyword">in</span> file(infile)] :   </div><div class="line">        segs = each.split(<span class="string">'\t'</span>)</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> segs :</div><div class="line">            <span class="keyword">break</span></div><div class="line">        sheet.write_merge(cur_row,cur_row+<span class="number">2</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="string">'0'</span>)</div><div class="line">        sheet.write_merge(cur_row,cur_row+<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,segs[<span class="number">0</span>])</div><div class="line">        sheet.write_merge(cur_row,cur_row+<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,segs[<span class="number">1</span>])</div><div class="line">        sheet.write(cur_row,<span class="number">3</span>,segs[<span class="number">2</span>])</div><div class="line">        <span class="keyword">if</span> segs[<span class="number">3</span>]:</div><div class="line">            sheet.write(cur_row+<span class="number">1</span>,<span class="number">3</span>,segs[<span class="number">3</span>])</div><div class="line">        <span class="keyword">if</span> segs[<span class="number">4</span>]:</div><div class="line">            sheet.write(cur_row+<span class="number">2</span>,<span class="number">3</span>,segs[<span class="number">4</span>])</div><div class="line">        cur_row += <span class="number">3</span></div><div class="line"></div><div class="line">    <span class="comment"># print 'OVER'</span></div><div class="line">    f.save(<span class="string">'./Demo.xls'</span>)</div><div class="line">    </div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span> :</div><div class="line">    <span class="comment"># MakeCsv()</span></div><div class="line">    MakeInput()</div><div class="line">    Combine()</div></pre></td></tr></table></figure></p>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+    <div class="comments">
+        
+<div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+    </div>
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    Coding the world.
+                </p>
+				<script type="text/javascript" src="//rf.revolvermaps.com/0/0/6.js?i=5mihyim0z76&amp;m=7&amp;c=66ccff&amp;cr1=ff0000&amp;f=arial&amp;l=0&amp;lx=200&amp;ly=-20&amp;hi=10" async="async"></script>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/articles/2017-09/【Pytorch】Windows10下配置Pytorch环境.html">【Pytorch】Windows10下配置Pytorch环境</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/articles/2017-09/【O2OTM】你的搜索透露了你的喜好——跨模态推荐.html">【O2OTM】你的搜索透露了你的喜好——跨模态推荐</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/articles/2017-08/【Selenium】Windows平台下使用python自动登陆网关.html">【Selenium】Windows平台下使用python自动登陆网关</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/articles/2017-08/【列表解析式】Python的单行操作秀.html">【列表解析式】Python的单行操作秀</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/论文阅读/">论文阅读</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/编程记忆/">编程记忆</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/功能脚本/">功能脚本</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/环境配置/">环境配置</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/okcd00/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://twitter.com/okcd00/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:okcd00@vip.qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="http://blog.csdn.net/okcd00/rss/list">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @<a href="https://github.com/okcd00/">Chen Dian</a>. 2017 All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'okcd00';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<script type="text/javascript" color="0,255,255" opacity='0.75' zIndex="-2" count="75" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+
+</body>
+
+</html>
