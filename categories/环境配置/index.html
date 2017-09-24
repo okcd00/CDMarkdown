@@ -69,6 +69,20 @@
     
 
 	
+	<!-- Baidu Analytics -->
+    
+	<script type="text/javascript">
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?{{ theme.baidu_analytics }}";
+		  var s = document.getElementsByTagName("script")[0];
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+
+
+	
 	<!-- star map -->
 	<script type="text/javascript" color="255,255,255" opacity='0.75' zIndex="-2" count="88" src="js/canvas.js"></script>
 	
@@ -182,20 +196,20 @@
 </div>
             
                 <div class="archive-post">
-    <a href="../../articles/2017-05/【TensorFlow】Windows10下配置TensorFlow环境.html">
-        <span class="archive-date">
-            May 2017
-        </span>
-        【TensorFlow】Windows10下配置TensorFlow环境
-    </a>
-</div>
-            
-                <div class="archive-post">
     <a href="../../articles/2017-02/【Theano】环境配置——“g++ not detected”.html">
         <span class="archive-date">
             Feb 2017
         </span>
         【Theano】环境配置——“g++ Not Detected”
+    </a>
+</div>
+            
+                <div class="archive-post">
+    <a href="../../articles/2017-05/【TensorFlow】Windows10下配置TensorFlow环境.html">
+        <span class="archive-date">
+            May 2017
+        </span>
+        【TensorFlow】Windows10下配置TensorFlow环境
     </a>
 </div>
             
@@ -357,7 +371,8 @@
 
 
 
-<script type="text/javascript" color="0,255,255" opacity='0.75' zIndex="-2" count="75" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+<!-- "//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js" -->
+<script type="text/javascript" color="0,255,255" opacity='0.75' zIndex="-2" count="75" src='/js/canvas.js'></script>
 
 </body>
 

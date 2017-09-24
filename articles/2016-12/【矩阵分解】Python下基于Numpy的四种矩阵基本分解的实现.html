@@ -69,6 +69,20 @@
     
 
 	
+	<!-- Baidu Analytics -->
+    
+	<script type="text/javascript">
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?{{ theme.baidu_analytics }}";
+		  var s = document.getElementsByTagName("script")[0];
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+
+
+	
 	<!-- star map -->
 	<script type="text/javascript" color="255,255,255" opacity='0.75' zIndex="-2" count="88" src="js/canvas.js"></script>
 	
@@ -181,6 +195,7 @@
         <!-- Post Content -->
         <h3 id="0x00-需求"><a href="#0x00-需求" class="headerlink" title="0x00 需求"></a>0x00 需求</h3><p>完成课堂上讲的关于矩阵分解的<br>· LU、<br>· QR（Gram-Schmidt）<br>· Orthogonal Reduction<br>    Householder reduction<br>    Givens reduction<br>程序实现，要求一个综合程序，根据选择参数的不同，实现不同的矩阵分解。</p>
 <p>反正也是要写，就顺手做成了实现类，可以import调用的那种，为了写作业方便，也设置了输出中间过程，方便拿过程分。</p>
+<a id="more"></a>
 <h3 id="0x01-作者"><a href="#0x01-作者" class="headerlink" title="0x01 作者"></a>0x01 作者</h3><ul>
 <li>陈点 学号 201618013229031</li>
 <li>个人邮箱 chendian@baidu.com</li>
@@ -393,7 +408,8 @@
 
 
 
-<script type="text/javascript" color="0,255,255" opacity='0.75' zIndex="-2" count="75" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+<!-- "//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js" -->
+<script type="text/javascript" color="0,255,255" opacity='0.75' zIndex="-2" count="75" src='/js/canvas.js'></script>
 
 </body>
 

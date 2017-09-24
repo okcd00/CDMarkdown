@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="To be more curious and less lazy.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Chen Dian">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="【Fsteam】使用C++筛选合并多文件的尝试"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="To be more curious and less lazy." />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="CDPlayer&#39;s Blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>【Fsteam】使用C++筛选合并多文件的尝试 - CDPlayer&#39;s Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+	
+	<!-- Baidu Analytics -->
+    
+	<script type="text/javascript">
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?{{ theme.baidu_analytics }}";
+		  var s = document.getElementsByTagName("script")[0];
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+
+
+	
+	<!-- star map -->
+	<script type="text/javascript" color="255,255,255" opacity='0.75' zIndex="-2" count="88" src="js/canvas.js"></script>
+	
+	<!-- Earth -->
+	<script type="text/javascript" src="//rf.revolvermaps.com/0/0/6.js?i=5mihyim0z76&amp;m=7&amp;c=66ccff&amp;cr1=ff0000&amp;f=arial&amp;l=0&amp;lx=200&amp;ly=-20&amp;hi=10" async="async"></script>
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="../../index.html">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="../../tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="../../archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="../../categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="../../wlog">
+                    WorkLog
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="../../about">
+                    About
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="../../articles/2015-07/【Fsteam】使用C++筛选合并多文件的尝试.html">
+                【Fsteam】使用C++筛选合并多文件的尝试
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-07-18</span>
+            
+            
+                <a href="#disqus_thread" class="comments">留言</a>
+            
+            
+                <span class="category">
+                    <a href="/categories/功能脚本/">功能脚本</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>今天接到一个小任务，说是让把好多文件（大概2800来个，总大小超过1G）中的信息进行筛选，整合到一个文件里方便接下来的操作。<br>那么，无可避免的就需要用到多文件读写。那么，该如何批量打开多个文件进行读写操作呢？<br>众所周知 freopen(filename,r/w,i/ostream)的第一个参数filename需要是一个常量const char*，即便文件名是有序的，我们也没办法将变量传参进去。</p>
+<a id="more"></a>
+<p>于是，在搜索与自学中看到了这样一个实例：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</div><div class="line"><span class="keyword">int</span> main()</div><div class="line">&#123;</div><div class="line">true<span class="keyword">int</span> i;</div><div class="line">true<span class="keyword">char</span> filename[<span class="number">30</span>],<span class="built_in">line</span>[<span class="number">1001</span>];</div><div class="line">trueifstream <span class="built_in">File</span>[<span class="number">5</span>];</div><div class="line">trueofstream File2;  </div><div class="line">trueFile2.<span class="built_in">open</span>(<span class="string">"5.txt"</span>,ios::out);</div><div class="line">true<span class="built_in">for</span>(i=<span class="number">1</span>;i&lt;<span class="number">5</span>;i++)</div><div class="line">true&#123;</div><div class="line">truetruesprintf(filename,<span class="string">"%d.txt"</span>,i);</div><div class="line">truetrue<span class="built_in">File</span>[i].<span class="built_in">open</span>(filename,ios::in);</div><div class="line">truetrue<span class="built_in">while</span>(!<span class="built_in">File</span>[i].eof())</div><div class="line">truetrue&#123;</div><div class="line">truetruetrue<span class="built_in">File</span>[i].getline(<span class="built_in">line</span>,<span class="number">1000</span>);</div><div class="line">truetruetrueFile2&lt;&lt;<span class="built_in">line</span>&lt;&lt;endl;</div><div class="line">truetrue&#125;</div><div class="line">truetrue<span class="built_in">File</span>[i].<span class="built_in">close</span>();</div><div class="line">true&#125;</div><div class="line">trueFile2.<span class="built_in">close</span>();</div><div class="line">truesystem(<span class="string">"pause"</span>);</div><div class="line">true<span class="built_in">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>用数组来申明文件输入输出流，使用正规的fsream函数来进行操作，简单易懂而且操作高效。<br>然而，关于当前文件夹究竟有哪些文件，也懒得一一输入进来，于是我们又需要这样一个函数来获得某个文件夹内，所有文件的名称（获得之后也可以通过文件读写把所有文件名写入一个文件中）<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;dirent.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">trueDIR *dp;</div><div class="line">true<span class="class"><span class="keyword">struct</span> <span class="title">dirent</span> *<span class="title">dirp</span>;</span></div><div class="line">true<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt; filename;</div><div class="line">true<span class="keyword">if</span>( (dp=opendir(<span class="string">"F:\\directory_name"</span>) )==<span class="literal">NULL</span> )</div><div class="line">trueperror(<span class="string">"open dir error"</span>);</div><div class="line">true</div><div class="line">true<span class="keyword">while</span>( (dirp=readdir(dp) )!=<span class="literal">NULL</span> )</div><div class="line">truefilename.push_back(dirp-&gt;d_name);</div><div class="line">true<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;filename.size();i++)</div><div class="line">true<span class="built_in">cout</span>&lt;&lt;filename[i]&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">trueclosedir(dp);</div><div class="line">true<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在掌握了这些之后，尝试着写了一个较大的程序，实现的工程应用如下：从CN-pair中获得事先输出的<code-name>键值对，存储在缓存中，接着对大数量的文件进行读取，每行三列以’\t’分割的数据经过处理，获得第二列中的数据，筛去<code-name>的值，依次存储于文件SUM中，与其相对应的频数则也依次存储于FREQ中：</code-name></code-name></p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt; </span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cctype&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> Max(a,b) ((a)&gt;(b)?(a):(b))</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> Min(a,b) ((a)&lt;(b)?(a):(b))</span></div><div class="line"></div><div class="line"><span class="keyword">bool</span> cmp(<span class="keyword">const</span> <span class="keyword">int</span> a, <span class="keyword">const</span> <span class="keyword">int</span> b)</div><div class="line">&#123;</div><div class="line">true<span class="built_in">return</span> a &gt; b;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">map</span>&lt;<span class="keyword">string</span>,<span class="keyword">string</span>&gt; mark;</div><div class="line">vector&lt;<span class="keyword">int</span>&gt; freq;</div><div class="line"></div><div class="line"><span class="keyword">void</span> get_CNpair()	<span class="comment">//get &lt;Code-Name&gt; pair into Cache</span></div><div class="line">&#123;</div><div class="line">true<span class="keyword">string</span> c,n; </div><div class="line">truemark.<span class="built_in">clear</span>();</div><div class="line">truefreopen(<span class="string">"CN-pair"</span>,<span class="string">"r"</span>,stdin);</div><div class="line">true<span class="built_in">while</span>(cin&gt;&gt;c&gt;&gt;n) mark[c]=n; </div><div class="line">truefclose(stdin);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> IncludeChinese(<span class="keyword">char</span> *str)  <span class="comment">//0: English  1:Chinese</span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">char</span> c;</div><div class="line">   <span class="built_in">while</span>(<span class="number">1</span>)</div><div class="line">   &#123;</div><div class="line">       c=*str++;</div><div class="line">       <span class="built_in">if</span> (c==<span class="number">0</span>) <span class="built_in">break</span>;</div><div class="line">true   <span class="built_in">if</span> (c&amp;<span class="number">0x80</span>)</div><div class="line">       	<span class="built_in">if</span> (*str &amp; <span class="number">0x80</span>) <span class="built_in">return</span> <span class="number">1</span>;</div><div class="line">   &#125;</div><div class="line">   <span class="built_in">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> main()</div><div class="line">&#123;</div><div class="line">trueget_CNpair(); </div><div class="line">truefreq.<span class="built_in">clear</span>();</div><div class="line">true<span class="keyword">char</span> filename[<span class="number">30</span>],<span class="built_in">line</span>[<span class="number">1024</span>],t[<span class="number">1024</span>];</div><div class="line">trueifstream <span class="built_in">File</span>[<span class="number">3333</span>];</div><div class="line">trueofstream File2;  </div><div class="line">trueFile2.<span class="built_in">open</span>(<span class="string">"Sum.txt"</span>,ios::out);</div><div class="line">true<span class="keyword">int</span> i=<span class="number">1</span>;</div><div class="line">true<span class="built_in">for</span>(<span class="built_in">map</span>&lt;<span class="keyword">string</span>,<span class="keyword">string</span>&gt;::iterator mit=mark.<span class="built_in">begin</span>();mit!=mark.<span class="built_in">end</span>();++mit,++i)</div><div class="line">true&#123;</div><div class="line">truetrue<span class="comment">//cout&lt;&lt;mit-&gt;first&lt;&lt;":"&lt;&lt;mit-&gt;second&lt;&lt;endl;</span></div><div class="line">truetrue<span class="keyword">char</span> addr[<span class="number">6</span>];</div><div class="line">truetrue<span class="built_in">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">6</span>;j++) addr[j]=(mit-&gt;first)[j];</div><div class="line">truetruesprintf(filename,<span class="string">"%s"</span>,addr);</div><div class="line">truetrue<span class="built_in">File</span>[i].<span class="built_in">open</span>(filename,ios::in);</div><div class="line">truetrue<span class="comment">//File2&lt;&lt;"#"&lt;&lt;mit-&gt;first&lt;&lt;"#"&lt;&lt;endl;</span></div><div class="line">truetrue<span class="built_in">while</span>(!<span class="built_in">File</span>[i].eof())</div><div class="line">truetrue&#123;</div><div class="line">truetruetrue<span class="built_in">File</span>[i].getline(<span class="built_in">line</span>,<span class="number">1023</span>);</div><div class="line">truetruetrue<span class="keyword">string</span> anti=<span class="built_in">line</span>;</div><div class="line">truetruetrue<span class="keyword">int</span> flag=<span class="number">0</span>,rj=<span class="number">0</span>,temp=<span class="number">0</span>;</div><div class="line">truetruetrue<span class="built_in">for</span>(<span class="keyword">int</span> ri=<span class="number">0</span>;ri&lt;strlen(<span class="built_in">line</span>);ri++)</div><div class="line">truetruetrue&#123;</div><div class="line">truetruetruetrue<span class="built_in">if</span>(flag==<span class="number">0</span> &amp;&amp; <span class="built_in">line</span>[ri]==<span class="string">'\t'</span>) &#123;flag=<span class="number">1</span>;<span class="built_in">continue</span>;&#125;</div><div class="line">truetruetruetrue<span class="built_in">if</span>(flag==<span class="number">0</span>) <span class="built_in">continue</span>;</div><div class="line">truetruetruetrue<span class="built_in">if</span>(<span class="built_in">line</span>[ri]==<span class="string">'\t'</span>)</div><div class="line">truetruetruetrue&#123;</div><div class="line">truetruetruetruetruetemp=<span class="number">0</span>; </div><div class="line">truetruetruetruetrueri++;</div><div class="line">truetruetruetruetrue<span class="built_in">while</span>(<span class="built_in">line</span>[ri]!=<span class="string">'.'</span>) </div><div class="line">truetruetruetruetrue&#123;</div><div class="line">truetruetruetruetruetruetemp=temp*<span class="number">10</span>+(<span class="keyword">int</span>)(<span class="built_in">line</span>[ri]-<span class="string">'0'</span>);</div><div class="line">truetruetruetruetruetrueri++;</div><div class="line">truetruetruetruetrue&#125;	<span class="built_in">break</span>;</div><div class="line">truetruetruetrue&#125;</div><div class="line">truetruetruetrue<span class="built_in">else</span></div><div class="line">truetruetruetrue&#123;</div><div class="line">truetruetruetruetrue<span class="built_in">if</span>(<span class="built_in">line</span>[ri]!=<span class="number">32</span> &amp;&amp; <span class="built_in">line</span>[ri]&gt;<span class="number">0</span> &amp;&amp; <span class="built_in">line</span>[ri]&lt;<span class="number">127</span>);</div><div class="line">truetruetruetruetrue<span class="built_in">else</span> <span class="built_in">if</span>(isdigit(<span class="built_in">line</span>[ri]));</div><div class="line">truetruetruetruetrue<span class="built_in">else</span> t[rj++]=<span class="built_in">line</span>[ri];	</div><div class="line">truetruetruetrue&#125;</div><div class="line">truetruetrue&#125;</div><div class="line">truetruetruet[rj]=<span class="string">'\0'</span>;</div><div class="line">truetruetrue<span class="built_in">if</span>(strlen(t)&gt;<span class="number">0</span> &amp;&amp; IncludeChinese(t)) </div><div class="line">truetruetrue&#123;</div><div class="line">truetruetruetrue<span class="keyword">string</span> 	t_str=t,</div><div class="line">truetruetruetruetruetruerpls1=mit-&gt;first,</div><div class="line">truetruetruetruetruetruerpls2=mit-&gt;second;</div><div class="line">truetruetruetrue<span class="comment">//cout&lt;&lt;rpls1&lt;&lt;rpls2&lt;&lt;endl;</span></div><div class="line">truetruetruetrue<span class="built_in">if</span>(t_str.<span class="built_in">find</span>(rpls1)!=t_str.npos)</div><div class="line">truetruetruetruet_str=t_str.replace(t_str.<span class="built_in">find</span>(rpls1),rpls1.length(),<span class="string">""</span>);</div><div class="line">truetruetruetrue<span class="comment">//cout&lt;&lt;"rpls1:"&lt;&lt;t_str&lt;&lt;":"&lt;&lt;rpls1&lt;&lt;endl;</span></div><div class="line">truetruetruetrue<span class="built_in">if</span>(t_str.<span class="built_in">find</span>(rpls2)!=t_str.npos)</div><div class="line">truetruetruetruet_str=t_str.replace(t_str.<span class="built_in">find</span>(rpls2),rpls2.length(),<span class="string">""</span>);</div><div class="line">truetruetruetrue<span class="comment">//cout&lt;&lt;"rpls2:"&lt;&lt;t_str&lt;&lt;":"&lt;&lt;rpls2&lt;&lt;endl;</span></div><div class="line"></div><div class="line">truetruetruetrue<span class="built_in">if</span>(t_str.length()&gt;<span class="number">0</span>)</div><div class="line">truetruetruetrue&#123;</div><div class="line">truetruetruetruetrue<span class="keyword">bool</span> blank_flag=<span class="number">1</span>;</div><div class="line">truetruetruetruetrue<span class="built_in">for</span>(<span class="keyword">int</span> bi=<span class="number">0</span>;bi&lt;t_str.length();bi++)</div><div class="line">truetruetruetruetrue&#123;</div><div class="line">truetruetruetruetruetrue<span class="built_in">if</span>(t_str[bi]!=<span class="string">' '</span>)</div><div class="line">truetruetruetruetruetrue&#123;</div><div class="line">truetruetruetruetruetruetrueblank_flag=<span class="number">0</span>;</div><div class="line">truetruetruetruetruetruetrue<span class="built_in">break</span>;</div><div class="line">truetruetruetruetruetrue&#125;</div><div class="line">truetruetruetruetrue&#125;</div><div class="line">truetruetruetruetrue<span class="built_in">if</span>(blank_flag)</div><div class="line">truetruetruetruetrue&#123;</div><div class="line">truetruetruetruetruetrueFile2&lt;&lt;<span class="built_in">line</span>&lt;&lt;endl;</div><div class="line">truetruetruetruetruetruefreq.push_back(temp);</div><div class="line">truetruetruetruetrue&#125;</div><div class="line">truetruetruetrue&#125;</div><div class="line">truetruetrue&#125;</div><div class="line">truetrue&#125;</div><div class="line">truetrue<span class="built_in">File</span>[i].<span class="built_in">close</span>();</div><div class="line">true&#125;</div><div class="line">trueFile2.<span class="built_in">close</span>();</div><div class="line">truefreopen(<span class="string">"freq.txt"</span>,<span class="string">"w"</span>,stdout);</div><div class="line">true<span class="comment">//for(vector&lt;int&gt;::iterator vd=freq.begin();vd!=freq.end();++vd)</span></div><div class="line">true<span class="built_in">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;freq.<span class="built_in">size</span>();i++)</div><div class="line">truecout&lt;&lt;freq[i]&lt;&lt;endl;</div><div class="line">truefclose(stdout);</div><div class="line">true<span class="built_in">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Fstream/">#Fstream</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+    <div class="comments">
+        
+<div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+    </div>
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    Coding the world, try to fetch more.
+                </p>
+				<script type="text/javascript" src="//rf.revolvermaps.com/0/0/6.js?i=5mihyim0z76&amp;m=7&amp;c=66ccff&amp;cr1=ff0000&amp;f=arial&amp;l=0&amp;lx=200&amp;ly=-20&amp;hi=10" async="async"></script>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="../../articles/2017-09/【Pytorch】Windows10下配置Pytorch环境.html">【Pytorch】Windows10下配置Pytorch环境</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="../../articles/2017-09/【O2OTM】你的搜索透露了你的喜好——跨模态推荐.html">【O2OTM】你的搜索透露了你的喜好——跨模态推荐</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="../../articles/2017-08/【Selenium】Windows平台下使用python自动登陆网关.html">【Selenium】Windows平台下使用python自动登陆网关</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="../../articles/2017-08/【列表解析式】Python的单行操作秀.html">【列表解析式】Python的单行操作秀</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="../../categories/论文阅读/">论文阅读</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="../../categories/编程记忆/">编程记忆</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="../../categories/功能脚本/">功能脚本</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="../../categories/环境配置/">环境配置</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/okcd00/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://twitter.com/okcd00/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:okcd00@vip.qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="http://blog.csdn.net/okcd00/rss/list">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @<a href="https://github.com/okcd00/">Chen Dian</a>. 2017 All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="../../js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'okcd00';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<!-- "//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js" -->
+<script type="text/javascript" color="0,255,255" opacity='0.75' zIndex="-2" count="75" src='/js/canvas.js'></script>
+
+</body>
+
+</html>
