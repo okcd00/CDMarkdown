@@ -1,0 +1,172 @@
+<!DOCTYPE html><html><head><title>前周工作报告</title><meta charset='utf-8'><link href='https://dn-maxiang.qbox.me/res-min/themes/marxico.css' rel='stylesheet'><style>
+.note-content  {font-family: 'Helvetica Neue', Arial, 'Hiragino Sans GB', STHeiti, 'Microsoft YaHei', 'WenQuanYi Micro Hei', SimSun, Song, sans-serif;}
+
+</style></head><body><div id='preview-contents' class='note-content'>
+                        
+                    
+
+
+
+<h1 id="前周工作报告">前周工作报告 </h1>
+
+<p><p class="note-tags "><code class="notebook">九月</code> <code>第四周</code> <code>2017-09-18</code> <code>2017-09-24</code> </p></p>
+
+<h3 id="1-完善关联词提取类">1. 完善关联词提取类</h3>
+
+<blockquote>
+  <p>本周主要致力于对<code>link_couples</code>的提取，如“系…所致”，及重构优化<code>LinkCatch</code>以取代原先的<code>LabelMark</code>类，用以与Remarkable前端对接，并最终实现前端页面，相关代码可详见 <a href="http://gitpd.appdao.com/cheftin/AutoDoc/blob/master/autodoc/text_parser/causality_extractor/LinkCatch.py" target="_blank">【LinkCatch】</a></p>
+</blockquote>
+
+<ul><li>首先进行了优化重构，将可能复用的原实现类中的功能包装成Utils <br>
+<ul>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/bcf53fd79b79d2080071e7edc3243e3f9f7e9b9d" target="_blank">Update functions about sentence_analysis.</a></li>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/737d6ad7419217cbd592ebe527d8216898039f38" target="_blank">Add full stop into default separative sign</a></li></ul></li>
+<li>然后，开始尝试实现对<code>link_couples</code>的提取 <br>
+<ul>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/04b3331c2ffe61bb094ed71a9fe389f780cbc262" target="_blank">Finished extractor function for link_couples like <code>系...所致</code>.</a></li>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/4eed11b117b6f7a02f500ec645d9abebe3568fe5" target="_blank">Finished functions for link_couple’s extraction. </a></li>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/723fd61ceb4eca250178c6c717f4fe73c3de3e88" target="_blank">Update link_couple extractor for position, and update link_word list.</a> </li>
+<li><strong>&lt;= 先前做过一个提前报告，新进展在此处分界 =&gt;</strong></li>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/e7b97283f43f18362bf12838e84f3579c5241da5" target="_blank">generate link_words from different methods, </a></li>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/7b28f02202258a6844128a757672fa922c41c825" target="_blank">Finished functions for get_link_words_with_rule v1.0.</a> </li></ul></li>
+<li>提取实现后，进行测试发现，有“多组couples”、“重复使用单字”、“句子自身错误”等问题，对齐进行逐一排查与修复 <br>
+<ul>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/fefa461b873520de30f9d851b6172f0120a2683d" target="_blank">Fix issue for multi_matched.</a></li>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/510dc5b5989665544fda349c48c0650f203b8817" target="_blank">Finished functions for get_link_words_with_rule v1.1 </a> <br>
+<ul>
+<li>fixed text source: original_text -&gt; text(expanded)</li>
+<li>fixed return is not streak</li>
+<li>fixed return is not complete</li></ul></li>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/ea60a69cc1fd2d7031f8dd7cd64c145be2f72619" target="_blank">Fix position detecting when input an empty list. </a></li>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/3fa6d4adc1ef334e0603a479ed649639d2bbb2a1" target="_blank">Add filter for <code>no words detected</code> may appear.</a></li></ul></li>
+<li>完成之后与前端Remarkable进行对接，为前端实现题目传输的API <br>
+<ul>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/be85608ba7bd5ff7631fdfd7341939da8132320e" target="_blank">Finished new link_words extractor API for post:/api/v1/question.</a></li>
+<li>辅助前端进行测试与debug，当前效果见<a href="http://undefined" target="_blank">此处</a></li></ul></li>
+<li>check过程中也顺便在更新疑难句，详见<a href="http://gitpd.appdao.com/cheftin/AutoDoc/blob/master/autodoc/text_parser/causality_extractor/specific_cases.md" target="_blank">【specific_cases】</a> <br>
+<ul>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/aa0d865d932bdea29941927b43fbe772735c2ceb" target="_blank">Record new issues during checking Label.</a> <br>
+<ul>
+<li>and remove some</li></ul></li></ul></li>
+<li>check过程中也顺便在更新<code>word_list</code>，详见<a href="http://gitpd.appdao.com/cheftin/AutoDoc/blob/master/autodoc/text_parser/causality_extractor/LinkSplit.py" target="_blank">【LinkSplit】</a> <br>
+<ul>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/b41d65419333b1f6b41783b16e9d97a6dc27f2b3" target="_blank">update link_word list.</a></li></ul></li>
+</ul>
+
+<h3 id="2-autodoc项目负责后端实现">2. Autodoc项目，负责后端实现</h3>
+
+<blockquote>
+  <p>作为后端编写逻辑，完成并优化新的关联词提取类</p>
+</blockquote>
+
+<ul><li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/39433001ff2d19b0b0c01b6b54a051fefdec70cc" target="_blank">Add API for request posting.</a></li>
+<li><a href="http://gitpd.appdao.com/cheftin/Remarkable/commit/10412d327682df1185e1eb20f65099c325f08fd4" target="_blank">Add full stop into default separative sign</a></li>
+</ul>
+
+<h3 id="3-remarkable项目前端标注讨论">3. Remarkable项目，前端标注讨论</h3>
+
+<blockquote>
+  <p>协助完成前端业务逻辑，提出修改意见及协助完善</p>
+</blockquote>
+
+<p><a href="http://gitpd.appdao.com/cheftin/Label_front/issues/21" target="_blank">《Update Frontend logic for causality_label.》</a> <br>
+<strong>会议记录：标注逻辑</strong> · @shaozw · @chendian · @luojie ·</p>
+
+<p>进度记录</p>
+
+<div class="checklist"><div class="checklist-item"><input type="checkbox" checked="checked"> 选择标注：增加 <code>不标注、无标注(N)</code></div><div class="checklist-item"><input type="checkbox" checked="checked"> 选中状态及逻辑实现</div><div class="checklist-item"><input type="checkbox" checked="checked"> 着色状态及逻辑实现</div><div class="checklist-item"><input type="checkbox" checked="checked"> 删除按钮相关逻辑</div></div>
+
+<p>标注流程记录</p>
+
+<ul><li>关联词选择逻辑 <br>
+<ul>
+<li>无修改</li></ul></li>
+<li>选择着色：<strong>【TODO】</strong> <br>
+<ol>
+<li rel="1">点选使得当前segment变为 <code>选中状态</code></li>
+<li rel="2">划词使得当前被划的segments变为 <code>选中状态</code></li>
+<li rel="3">点选 <code>原因(C)</code>、<code>连接词(L)</code>、 <code>结果(R)</code>或<code>无标注(N)</code>时，所有<code>选中状态</code>的segments失去<code>选中</code>状态变为<code>着色</code>状态，着色的颜色与选择的C\L\R一致，其中N为取消颜色</li></ol></li>
+<li>因果标注 <br>
+<ol>
+<li rel="1">当前着色情况已经可以表示一组因果关系时，点选 <code>因果标注完成</code>，清除所有着色情况，按着色情况将C、L、R对应的segments记录于因果关系中，记作 <span xmlns="http://www.w3.org/1999/xhtml" class="" rel="e8a87898efc00bd6e44ae2c7edcfcd1c"><span class="MathJax_SVG" id="MathJax-Element-3-Frame" role="textbox" aria-readonly="true" style="font-size: 100%; display: inline-block;"><span><img type="image/png" width="22" height="17" longdesc="__SVG__undefined" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAiCAYAAAAkjjtxAAAE9UlEQVRYR9WYZYi2VRCGr89OBAsVAwtF7ECxG7sbRQUVW7ALQbEDbFFRMBG7u0XB7h82iI1dWKhcH3OW2bNP7eefdf4se545c+bMmbnnnncS/zOZ1OLvscCawB/AP5XOa8CpDetDrn4WsFiD4q/AQcCPfUbaHF4PWBnw7+rAbMnQk8BWwE99xqvv+wBXVms/AM8C9wBXAX/22WxzuOybJoxtkgy9CWwMfNFnPH1fBHgQWLzaczZwzDjs0Ofw3MDDwHLJ6OfAWsAHAw/y0jcD21b6Xnht4L2Bdiar9TlsHj/TYNALvDHwoP2By4CPgIXTnqfjpX4faGeQw6cBxwMfAwsmw6bEIwMOWilSStUPgTXSHm2fOMDGKJWuCM8IPACsA1wAHJZ2Hgmc13PY9MAdwKaAzm0JLJv2aNcoj0u6HBZ+NPh1VPD5ybKR0YkuORoQxu4HLoyiK/oW7kbAl+PytieHCwxdHxF+MRm/Hdi+47BVAXUMyDbA1pFaZYuR3268zvYV3XXA7sC+wHPA25XDOwN/NRw6C3ATsHlA1kXAbZEaRX2/Bkwe5H9bSghnjwJzRQ5byXcleHshKlzgr8UueELkv68wXyDNvKH4czSldwZ5WCm1Obwi8DJgV7NYZgCeAJaO/ULaZsCnlT1RwELVKdPANNoxcLioTmmnnLy/zeESJZ/zUEDEyM9qWxayMujbvh8CzF+7l11MEYPF4iIXA4dMSXTbHDaaFoxwtAHweBi3UCygIisAEqEiZwCSJiNsQf0GzB4o4SWK2PHu7HHYYMhjhNNR/KIpwgXOZFDrAp+EcaN9cDpoh4i6S7bYe4FfIoVeCr1lgtzMGv/bzrPNJr/nAN4C5onXOTArNTls9VvlcghJT6GXBVfL/qOAcwEP0NnVAHXOSQeoU1LDZW36cn93RHhOQJzWYV/awIxQ3CaHrwX2aDh8b+DqdNCZwHHAJYBRMBV87sINtO2BOY3qC7X57eV3AU4HvuqKsDB2d6CBPNibFjGvylO7Zk5fA3hB02eLQJaiP3+gzKLJhq052+xJ5bGf6whbSK8AzwdsfZu2LBkwZWNQTIOFAPO0pEc+YX3gsbTQZLPL4WmbCH3t8MnASRG1PStrCwTzytxYFYm5mOs4laWgRlnzNfbq8NCc9YzlY8p5P+phlN3scGZnOwG3VMaFqKdS8/CzJNwW7KtkmTleQEQoklGl9ltmZwGbRiXnvbDUdpRkhx1f7EJTtUwCGr2hIj1tNNORSOJvWy4XswvKibukpKQ6sjnpQavDhwfHte0K2jl/yyarvow6poLDaNPgeABwaTrJ5uNL2Ey65IiI9GeA9GAM/SwRNhL3Rf68Hh3umwbLQplt11SQS7zaoLMUcGM1B0qcvGj9k0HePh0glZV73Ars1lZ0RlZjzm9FJN2OQP59N62XRlCnwtTArjEVC29GJ8v3gcm+nmO9xKp23qJz3eC14rUR1jHZVS0WodNubhYbxs0l97lbSXwuByy2Jo6sbWvDOpBXe/G625mzdkJFetA4letw15jU9ITqt633pOjI56b9djU7p1HW+e+ajPWN+UMd+K96M0Vrl0RZrP5s5WuM+QlgojjsNOIEIqsTr+XVpo1EalS6ThSH/R2vDLmijBP6FYm+jrzgRHF4FcA5UbElOwCfMpFzWAQxBZaIfuA41igTJcLFuTYEGnH+XxUiCjLCTVGtAAAAAElFTkSuQmCC" style="margin-top:0;margin-bottom:0;"></span></span></span></li>
+<li rel="2">多个并列标注按与 1. 相同情况进行标注</li>
+<li rel="3">产生嵌套时，仅仅标注 C&amp;L 或者 L&amp;R 即可点选<code>因果标注完成</code>，然后将先前标注的 <span xmlns="http://www.w3.org/1999/xhtml" class="" rel="e8a87898efc00bd6e44ae2c7edcfcd1c"><span class="MathJax_SVG" id="MathJax-Element-3-Frame" role="textbox" aria-readonly="true" style="font-size: 100%; display: inline-block;"><span><img type="image/png" width="22" height="17" longdesc="__SVG__undefined" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAiCAYAAAAkjjtxAAAE9UlEQVRYR9WYZYi2VRCGr89OBAsVAwtF7ECxG7sbRQUVW7ALQbEDbFFRMBG7u0XB7h82iI1dWKhcH3OW2bNP7eefdf4se545c+bMmbnnnncS/zOZ1OLvscCawB/AP5XOa8CpDetDrn4WsFiD4q/AQcCPfUbaHF4PWBnw7+rAbMnQk8BWwE99xqvv+wBXVms/AM8C9wBXAX/22WxzuOybJoxtkgy9CWwMfNFnPH1fBHgQWLzaczZwzDjs0Ofw3MDDwHLJ6OfAWsAHAw/y0jcD21b6Xnht4L2Bdiar9TlsHj/TYNALvDHwoP2By4CPgIXTnqfjpX4faGeQw6cBxwMfAwsmw6bEIwMOWilSStUPgTXSHm2fOMDGKJWuCM8IPACsA1wAHJZ2Hgmc13PY9MAdwKaAzm0JLJv2aNcoj0u6HBZ+NPh1VPD5ybKR0YkuORoQxu4HLoyiK/oW7kbAl+PytieHCwxdHxF+MRm/Hdi+47BVAXUMyDbA1pFaZYuR3268zvYV3XXA7sC+wHPA25XDOwN/NRw6C3ATsHlA1kXAbZEaRX2/Bkwe5H9bSghnjwJzRQ5byXcleHshKlzgr8UueELkv68wXyDNvKH4czSldwZ5WCm1Obwi8DJgV7NYZgCeAJaO/ULaZsCnlT1RwELVKdPANNoxcLioTmmnnLy/zeESJZ/zUEDEyM9qWxayMujbvh8CzF+7l11MEYPF4iIXA4dMSXTbHDaaFoxwtAHweBi3UCygIisAEqEiZwCSJiNsQf0GzB4o4SWK2PHu7HHYYMhjhNNR/KIpwgXOZFDrAp+EcaN9cDpoh4i6S7bYe4FfIoVeCr1lgtzMGv/bzrPNJr/nAN4C5onXOTArNTls9VvlcghJT6GXBVfL/qOAcwEP0NnVAHXOSQeoU1LDZW36cn93RHhOQJzWYV/awIxQ3CaHrwX2aDh8b+DqdNCZwHHAJYBRMBV87sINtO2BOY3qC7X57eV3AU4HvuqKsDB2d6CBPNibFjGvylO7Zk5fA3hB02eLQJaiP3+gzKLJhq052+xJ5bGf6whbSK8AzwdsfZu2LBkwZWNQTIOFAPO0pEc+YX3gsbTQZLPL4WmbCH3t8MnASRG1PStrCwTzytxYFYm5mOs4laWgRlnzNfbq8NCc9YzlY8p5P+phlN3scGZnOwG3VMaFqKdS8/CzJNwW7KtkmTleQEQoklGl9ltmZwGbRiXnvbDUdpRkhx1f7EJTtUwCGr2hIj1tNNORSOJvWy4XswvKibukpKQ6sjnpQavDhwfHte0K2jl/yyarvow6poLDaNPgeABwaTrJ5uNL2Ey65IiI9GeA9GAM/SwRNhL3Rf68Hh3umwbLQplt11SQS7zaoLMUcGM1B0qcvGj9k0HePh0glZV73Ars1lZ0RlZjzm9FJN2OQP59N62XRlCnwtTArjEVC29GJ8v3gcm+nmO9xKp23qJz3eC14rUR1jHZVS0WodNubhYbxs0l97lbSXwuByy2Jo6sbWvDOpBXe/G625mzdkJFetA4letw15jU9ITqt633pOjI56b9djU7p1HW+e+ajPWN+UMd+K96M0Vrl0RZrP5s5WuM+QlgojjsNOIEIqsTr+XVpo1EalS6ThSH/R2vDLmijBP6FYm+jrzgRHF4FcA5UbElOwCfMpFzWAQxBZaIfuA41igTJcLFuTYEGnH+XxUiCjLCTVGtAAAAAElFTkSuQmCC" style="margin-top:0;margin-bottom:0;"></span></span></span> 拖动至空着的 R 或者 C 中即可；同时将作为子级节点的 <span xmlns="http://www.w3.org/1999/xhtml" class="" rel="e8a87898efc00bd6e44ae2c7edcfcd1c"><span class="MathJax_SVG" id="MathJax-Element-3-Frame" role="textbox" aria-readonly="true" style="font-size: 100%; display: inline-block;"><span><img type="image/png" width="22" height="17" longdesc="__SVG__undefined" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAiCAYAAAAkjjtxAAAE9UlEQVRYR9WYZYi2VRCGr89OBAsVAwtF7ECxG7sbRQUVW7ALQbEDbFFRMBG7u0XB7h82iI1dWKhcH3OW2bNP7eefdf4se545c+bMmbnnnncS/zOZ1OLvscCawB/AP5XOa8CpDetDrn4WsFiD4q/AQcCPfUbaHF4PWBnw7+rAbMnQk8BWwE99xqvv+wBXVms/AM8C9wBXAX/22WxzuOybJoxtkgy9CWwMfNFnPH1fBHgQWLzaczZwzDjs0Ofw3MDDwHLJ6OfAWsAHAw/y0jcD21b6Xnht4L2Bdiar9TlsHj/TYNALvDHwoP2By4CPgIXTnqfjpX4faGeQw6cBxwMfAwsmw6bEIwMOWilSStUPgTXSHm2fOMDGKJWuCM8IPACsA1wAHJZ2Hgmc13PY9MAdwKaAzm0JLJv2aNcoj0u6HBZ+NPh1VPD5ybKR0YkuORoQxu4HLoyiK/oW7kbAl+PytieHCwxdHxF+MRm/Hdi+47BVAXUMyDbA1pFaZYuR3268zvYV3XXA7sC+wHPA25XDOwN/NRw6C3ATsHlA1kXAbZEaRX2/Bkwe5H9bSghnjwJzRQ5byXcleHshKlzgr8UueELkv68wXyDNvKH4czSldwZ5WCm1Obwi8DJgV7NYZgCeAJaO/ULaZsCnlT1RwELVKdPANNoxcLioTmmnnLy/zeESJZ/zUEDEyM9qWxayMujbvh8CzF+7l11MEYPF4iIXA4dMSXTbHDaaFoxwtAHweBi3UCygIisAEqEiZwCSJiNsQf0GzB4o4SWK2PHu7HHYYMhjhNNR/KIpwgXOZFDrAp+EcaN9cDpoh4i6S7bYe4FfIoVeCr1lgtzMGv/bzrPNJr/nAN4C5onXOTArNTls9VvlcghJT6GXBVfL/qOAcwEP0NnVAHXOSQeoU1LDZW36cn93RHhOQJzWYV/awIxQ3CaHrwX2aDh8b+DqdNCZwHHAJYBRMBV87sINtO2BOY3qC7X57eV3AU4HvuqKsDB2d6CBPNibFjGvylO7Zk5fA3hB02eLQJaiP3+gzKLJhq052+xJ5bGf6whbSK8AzwdsfZu2LBkwZWNQTIOFAPO0pEc+YX3gsbTQZLPL4WmbCH3t8MnASRG1PStrCwTzytxYFYm5mOs4laWgRlnzNfbq8NCc9YzlY8p5P+phlN3scGZnOwG3VMaFqKdS8/CzJNwW7KtkmTleQEQoklGl9ltmZwGbRiXnvbDUdpRkhx1f7EJTtUwCGr2hIj1tNNORSOJvWy4XswvKibukpKQ6sjnpQavDhwfHte0K2jl/yyarvow6poLDaNPgeABwaTrJ5uNL2Ey65IiI9GeA9GAM/SwRNhL3Rf68Hh3umwbLQplt11SQS7zaoLMUcGM1B0qcvGj9k0HePh0glZV73Ars1lZ0RlZjzm9FJN2OQP59N62XRlCnwtTArjEVC29GJ8v3gcm+nmO9xKp23qJz3eC14rUR1jHZVS0WodNubhYbxs0l97lbSXwuByy2Jo6sbWvDOpBXe/G625mzdkJFetA4letw15jU9ITqt633pOjI56b9djU7p1HW+e+ajPWN+UMd+K96M0Vrl0RZrP5s5WuM+QlgojjsNOIEIqsTr+XVpo1EalS6ThSH/R2vDLmijBP6FYm+jrzgRHF4FcA5UbElOwCfMpFzWAQxBZaIfuA41igTJcLFuTYEGnH+XxUiCjLCTVGtAAAAAElFTkSuQmCC" style="margin-top:0;margin-bottom:0;"></span></span></span> 所在行的 <code>删除</code> disable 掉：<strong>【TODO】</strong></li>
+<li rel="4">删除因果关系时，若包含某个子级关系，则 enable 该关系的<code>删除</code>按钮（基于每个segment仅有一条出边的假设）：<strong>【TODO】</strong></li></ol></li>
+<li>提交答案 <br>
+<ul>
+<li>后端进行check即可，前端无修改</li></ul></li>
+</ul>
+
+<h3 id="4-breeder项目提供意见与框架解答">4. Breeder项目，提供意见与框架解答</h3>
+
+<blockquote>
+  <p>为苗叔、李永前辈、王旭学长等解答了关于kernel等方面的问题， <br>
+  并在关于进程分配上提出自己的建议</p>
+</blockquote>
+
+<h3 id="other-works">Other Works</h3>
+
+<h4 id="teaching-assistant">Teaching assistant</h4>
+
+<blockquote>
+  <p>继续于玉泉路担任助教职责</p>
+</blockquote>
+
+<p><strong>作业布置</strong></p>
+
+<pre class="prettyprint hljs-dark"><code class="language-text hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs hljs">第四次作业内容：
+     题目详见PPT “search 4.pptx” 第17页；
+     请按照要求完成作业，并使用LaTeX完成电子版作业进行提交。
+
+     提示：本次作业请提交
+          1) pdf文档
+          2) 生成该pdf的LaTeX文件夹，打包成压缩包
+          3) 为了便于核查抄袭情况，请将tex文件复制一份放在压缩包外
+
+     即：本次作业提交内容为：
+          1) 201518012333333_姓名_04.pdf
+          2) 201518012333333_姓名_04.rar / 或者 .zip 
+          3) 201518012333333_姓名_04.tex
+
+     P.S. 
+           为方便批量处理，下划线等命名细节请务必一致
+           允许使用自己的LaTeX模版，但提供的TeX与LaTeX文件夹需要可以编译出该PDF
+           请使用简单一点的压缩方式，压缩包打开之后还要求下载软件的作业以后就不改了
+           助教联系方式在左侧栏的“互动交流—邮件工具”中
+
+
+     请务必按时、按要求提交以上3份文件；
+     经同学反映，SEP系统的时间会提前三分钟，所以请务必尽早提交；
+     按老师要求，不接受补交迟交，请大家务必准时提交作业。</code></pre>
+
+<p><strong>成绩批改</strong> <br>
+详见课程网站或附件<code>assignment4.xls</code>文件</p>
+
+<h4 id="pytorch-research">Pytorch Research</h4>
+
+<blockquote>
+  <p>调研中 <br>
+  Torch Self-Learning <br>
+  <a href="https://okcd00.github.io/Torch Self-Learning.html" target="_blank">点此查看</a> 当前实时调研进度</p>
+</blockquote>
+
+<h4 id="ppt-modify">PPT Modify</h4>
+
+<blockquote>
+  <p>PPT for AI Course <br>
+  <a href="https://okcd00.github.io/wlog/AI Course PPT 试修改说明.html" target="_blank">点此查看</a> 当前实时修改进度</p>
+</blockquote>
+
+<h3 id="weekly-timetable">Weekly Timetable</h3>
+
+<ul><li><code>2017-09-30</code> 周六：计算所 08:30 技术交流分享会</li>
+<li><code>2017-10-01</code> 周日：国庆放假</li>
+</ul>
+
+<h3 id="notes">Notes</h3>
+
+<ul><li><code>Pytorch</code> learning.</li>
+<li><code>Momoko</code> for <code>tornado</code> learning.</li>
+<li>Write issues for <code>Remarkable</code> and <code>因果标注</code></li>
+<li>PPT for AI course</li>
+</ul></div></body></html>
