@@ -4,7 +4,7 @@
 <!-- Head tag -->
 <head>
 	
-    <meta charset="utf-8">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="baidu-site-verification" content="o4pXUBsPyW" />
@@ -88,14 +88,14 @@
 	<script type="text/javascript" color="255,255,255" opacity='0.75' zIndex="-2" count="88" src="js/canvas.js"></script>
 	
 	<!-- Earth -->
-	<script type="text/javascript" src="//rf.revolvermaps.com/0/0/6.js?i=5mihyim0z76&amp;m=7&amp;c=66ccff&amp;cr1=ff0000&amp;f=arial&amp;l=0&amp;lx=200&amp;ly=-20&amp;hi=10" async="async"></script>
+	<script type="text/javascript" src="//rf.revolvermaps.com/0/0/6.js?i=5mihyim0z76&amp;m=7&amp;c=66ccff&amp;cr1=ff0000&amp;f=arial&amp;l=0&amp;lx=200&amp;ly=-20&amp;hi=10" async="async"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 
 <body>
 
-<div class="bg-gradient"></div>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="bg-gradient"></div>
 <div class="bg-pattern"></div>
 
 <!-- Menu -->
@@ -193,6 +193,33 @@
         <!-- Gallery -->
         
 
+		<!-- MathJax support -->
+		
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+	tex2jax: {
+	  inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+	  processEscapes: true,
+	  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+	}
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+	var all = MathJax.Hub.getAllJax(), i;
+	for (i=0; i < all.length; i += 1) {
+	  all[i].SourceElement().parentNode.className += ' has-jax';
+	}
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+		
         <!-- Post Content -->
         <p>@(关键词)[跨模态，推荐系统，O2OTM，可解释性，机器学习]</p>
 <p><img src="/assets/1499226349278.png" alt="Alt text"></p>
@@ -231,11 +258,11 @@
 </ul>
 <h3 id="To-Update-x-y-z"><a href="#To-Update-x-y-z" class="headerlink" title="To Update x,y,z"></a>To Update x,y,z</h3><p>在研究中，使用了 $Gibbs$ 采样来估计 $O2OTM$ 的参数。通过应用 $Gibbs$ 抽样，作者构建了收敛到对潜在变量后验分布的马尔可夫链。马尔科夫链连续状态间的过渡，归因于借鉴标准狄利克雷积分重复迭代总结出来的其他参数分布得来的 $x, y, z$。<br>接下来将对过程进行详细解读：</p>
 <script type="math/tex; mode=display">p(x_i=t|\vec{x}_{\neg i},\vec{y},\vec{z},\vec{w},\vec{b})=p(x_i=t|\vec{x}_{\neg i},\vec{y},w_i=v) \\
-\propto \frac{O_{t,\neg i}^v+\beta_v}{\sum_{v=1}^VO_{t,\neg i}^v+\beta_v} \cdot \frac{O_{u,\neg i}^t+\alpha_t}{\sum_{t=1}^TO_{u,\neg i}^t+\alpha_t} \tag{1}</script><p>其中 $x<em>i = t$ 表示语料库中第 $i$ 个词标记在语料库中对应的是第 $t$ 个在线话题，$w_i = v$ 代表第 $i$ 个词标记对应着字词库中的第 $v$ 个，$\vec{x}</em>{\neg i}$ 表示除了第 $i$ 个以外所有的在线话题表示。除此之外，$O<em>{t,\neg i}^v$ 表示第 $v$ 个词在第 $t$ 个在线话题中被观测到出现的次数，不包括当前例。$O</em>{u,\neg i}^t$ 表示第 $t$ 个在线话题在用户 $u$ (即拥有搜索词 $w_i$ 的)中被观测到出现的次数，不包括当前例。在此，在线话题 $x$ 被分配给语料库中的每个词标记。</p>
+\propto \frac{O_{t,\neg i}^v+\beta_v}{\sum_{v=1}^VO_{t,\neg i}^v+\beta_v} \cdot \frac{O_{u,\neg i}^t+\alpha_t}{\sum_{t=1}^TO_{u,\neg i}^t+\alpha_t} \tag{1}</script><p>其中 $x_i = t$ 表示语料库中第 $i$ 个词标记在语料库中对应的是第 $t$ 个在线话题，$w_i = v$ 代表第 $i$ 个词标记对应着字词库中的第 $v$ 个，$\vec{x}_{\neg i}$ 表示除了第 $i$ 个以外所有的在线话题表示。除此之外，$O_{t,\neg i}^v$ 表示第 $v$ 个词在第 $t$ 个在线话题中被观测到出现的次数，不包括当前例。$O_{u,\neg i}^t$ 表示第 $t$ 个在线话题在用户 $u$ (即拥有搜索词 $w_i$ 的)中被观测到出现的次数，不包括当前例。在此，在线话题 $x$ 被分配给语料库中的每个词标记。</p>
 <script type="math/tex; mode=display">p(y_j=t|\vec{y}_{\neg j},\vec{x},\vec{z},\vec{w},\vec{b})=p(y_j=t|\vec{y}_{\neg j},\vec{x},z_j=l) \\
-\propto \frac{O_{t,\neg j}^l+\eta_l}{\sum_{l=1}^LO_{t,\neg j}^v+\eta_l} \cdot \frac{O_{u,\neg j}^t+\alpha_t}{\sum_{t=1}^TO_{u,\neg j}^t+\alpha_t} \tag{2}</script><p>类似地，其中 $y<em>j = t$ 表示第 $t$ 个在线话题中对应的第 $j$ 个品牌标记，$z_j = l$ 代表在第 $j$ 个品牌标记中第 $l$ 个离线话题中被观测到出现的次数，$\vec{y}</em>{\neg j}$ 表示品牌标记中在第 $t$ 个在线话题中被观测到出现的次数，不包括当前例。此外，$O<em>{t,\neg j}^l$ 代表第 $l$ 个线下品牌在第 $t$ 个在线话题中被观测到出现的次数，不包括当前例。$O</em>{u,\neg j}^t$ 则代表第 $t$ 个在线话题在用户 $u$ (即购买品牌 $b_j$ 的)中被观测到出现的次数，不包括当前例。在此，在线话题 $y$ 被分配给语料库中的每个品牌标记。</p>
+\propto \frac{O_{t,\neg j}^l+\eta_l}{\sum_{l=1}^LO_{t,\neg j}^v+\eta_l} \cdot \frac{O_{u,\neg j}^t+\alpha_t}{\sum_{t=1}^TO_{u,\neg j}^t+\alpha_t} \tag{2}</script><p>类似地，其中 $y_j = t$ 表示第 $t$ 个在线话题中对应的第 $j$ 个品牌标记，$z_j = l$ 代表在第 $j$ 个品牌标记中第 $l$ 个离线话题中被观测到出现的次数，$\vec{y}_{\neg j}$ 表示品牌标记中在第 $t$ 个在线话题中被观测到出现的次数，不包括当前例。此外，$O_{t,\neg j}^l$ 代表第 $l$ 个线下品牌在第 $t$ 个在线话题中被观测到出现的次数，不包括当前例。$O_{u,\neg j}^t$ 则代表第 $t$ 个在线话题在用户 $u$ (即购买品牌 $b_j$ 的)中被观测到出现的次数，不包括当前例。在此，在线话题 $y$ 被分配给语料库中的每个品牌标记。</p>
 <script type="math/tex; mode=display">p(z_j=l|\vec{z}_{\neg j},\vec{x},\vec{y},\vec{w},\vec{b})=p(z_j=l|\vec{z}_{\neg j},y_j=t,b_j=k) \\
-\propto \frac{O_{l,\neg j}^k+\lambda_k}{\sum_{k=1}^BO_{l,\neg j}^k+\lambda_k} \cdot \frac{O_{t,\neg j}^l+\eta_l}{\sum_{l=1}^LO_{t,\neg j}^l+\eta_l} \tag{3}</script><p>其中$z<em>j = l$ 表示第 $l$ 个离线话题中对应的第 $j$ 个品牌标记，$b_j = k$ 代表在观测到的第 $j$ 个品牌标记是品牌词库里的第 $k$ 个词，$y_j = t$ 表示观测到的第 $j$ 个品牌标记是在线话题中的第 $t$ 个。   代表除了第 $j$ 个之外所有的离线话题所对应的品牌标记。除此之外，$O</em>{l,\neg j}^k$ 表现了观测到的在第 $k$ 个品牌上出现第l个离线话题的次数，不包括当前例。$O_{t,\neg j}^l$ 表现了观测到的在第 $l$ 个离线话题上出现第 $t$ 个在线话题的次数。在此，离线话题 $z$ 被分配给语料库的每一个品牌标记。</p>
+\propto \frac{O_{l,\neg j}^k+\lambda_k}{\sum_{k=1}^BO_{l,\neg j}^k+\lambda_k} \cdot \frac{O_{t,\neg j}^l+\eta_l}{\sum_{l=1}^LO_{t,\neg j}^l+\eta_l} \tag{3}</script><p>其中 $z_j = l$ 表示第 $l$ 个离线话题中对应的第 $j$ 个品牌标记，$b_j = k$ 代表在观测到的第 $j$ 个品牌标记是品牌词库里的第 $k$ 个词，$y_j = t$ 表示观测到的第 $j$ 个品牌标记是在线话题中的第 $t$ 个。 代表除了第 $j$ 个之外所有的离线话题所对应的品牌标记。除此之外，$O_{l,\neg j}^k$ 表现了观测到的在第 $k$ 个品牌上出现第l个离线话题的次数，不包括当前例。$O_{t,\neg j}^l$ 表现了观测到的在第 $l$ 个离线话题上出现第 $t$ 个在线话题的次数。在此，离线话题 $z$ 被分配给语料库的每一个品牌标记。</p>
 <p>在马尔科夫链收敛之后，模型变量可以通过以下的式子进行估计</p>
 <script type="math/tex; mode=display">\theta_{ut}=\frac{O_u^t+\alpha_t}{\sum_{t=1}^TO_u^t+\alpha_t} \tag{4}</script><script type="math/tex; mode=display">\phi_{tv}=\frac{O_t^v+\beta_v}{\sum_{v=1}^VO_t^v+\beta_v} \tag{5}</script><script type="math/tex; mode=display">\pi_{tl}=\frac{O_t^l+\eta_l}{\sum_{l=1}^LO_t^l+\eta_l} \tag{6}</script><script type="math/tex; mode=display">\varphi_{lk}=\frac{O_l^k+\lambda_k}{\sum_{k=1}^BO_l^k+\lambda_k} \tag{7}</script><p>在这里，$T,L$ 分别是在线与离线话题的数量。$V,B$ 是词库和品牌库的大小。<br>在这项研究中，我们不估计超变量 $α, β, η, λ$ 的值，而是直接分别设定平滑参数，固定为 $α=0.05, β=0.01, η=0.01, λ=0.01$ 。该算法开始需要随机为在线主题分配搜索词，并为离线品牌随机分配在线和离线主题。该算法的每次迭代包括为语料库中每个词标记和品牌标记运用算式 $(1),(2),(3)$ 。这种采样过程至少需要执行2000轮直至收敛。</p>
 <h3 id="Model-Inference"><a href="#Model-Inference" class="headerlink" title="Model Inference"></a>Model Inference</h3><p>当我们使用学习到的所有变量，就可以推断一个品牌和在线主题间的关系了，对于一个在线话题 $y=t$ 和一个离线品牌 $b=k$，我们有：</p>
@@ -244,7 +271,7 @@
 <p>除此之外，我们也可以为用户提供推荐了，第 $i$ 个用户购买第 $k$ 个品牌的概率可以使用如下方法计算：</p>
 <script type="math/tex; mode=display">p(b=k|u=i,\theta,\pi,\varphi)\\
 =\sum_{t=1}^T \sum_{l=1}^Lp(b=k|z=l,\varphi)p(z=l|y=t,\pi)p(y=t|u=i,\theta)\\
-=\sum_{t=1}^T \sum_{l=1}^L\varphi_{lj}\pi_{tl}\theta_{it}</script><h3 id="Lift"><a href="#Lift" class="headerlink" title="Lift"></a>Lift</h3><p>在文中，定义了一个参量——提升值。<br>顾名思义，给定线上话题 $t$ 时线下话题 $l$的概率，通过 $π<em>{tl} = p(z = l|y = t)$  分配使得所有数据的似然性最大。<br>基于 $π$ 我们也可以计算出 $π</em>{\neg tl} =p(z = l|y = \neg t) $，给定 $t$ 以外其他所有在线话题，度量离线话题 $l$ 的可能性。那么，$lift$ 可以如下定义:</p>
+=\sum_{t=1}^T \sum_{l=1}^L\varphi_{lj}\pi_{tl}\theta_{it}</script><h3 id="Lift"><a href="#Lift" class="headerlink" title="Lift"></a>Lift</h3><p>在文中，定义了一个参量——提升值。<br>顾名思义，给定线上话题 $t$ 时线下话题 $l$的概率，通过 $π_{tl} = p(z = l|y = t)$ 分配使得所有数据的似然性最大。<br>基于 $π$ 我们也可以计算出 $π_{\neg tl} =p(z = l|y = \neg t) $，给定 $t$ 以外其他所有在线话题，度量离线话题 $l$ 的可能性。那么，$lift$ 可以如下定义:</p>
 <script type="math/tex; mode=display">lift_{tl}=\frac{p(z=l|y=t)}{p(z=l|y=\neg tl)}=\frac{\pi_{tl}}{\pi_{\neg tl}}</script><p>实际上就是包含 $t$ 的目标 $l$ 的响应与不包含 $t$ 的目标响应的比值，这个提升值越大，代表在线话题 $t$ 与离线话题 $l$ 之间的关联性越强。</p>
 <p>于是，我们就可以运用这个参量来做一些有意思的挖掘：在挖掘中，我们有着令人惊喜的收获：区别于绝大多数类似LDA的推荐算法，这种算法具有珍贵的可解释性，这种可解释性，往往在与商家交流时是最有效的证明手段与促进合作的途径。下面我们来看一看这种可解释性的表现：</p>
 <p><img src="/assets/1499346566678.png" alt="Alt text|center"><br>如上图，展示了高lift值的一些例子，作者从数据中选出的一些在线与离线的话题对。这些例子是通过筛选得到的，以便于覆盖不同群体的顾客。</p>
@@ -448,8 +475,7 @@
 
 
 <!-- "//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js" -->
-<script type="text/javascript" color="0,255,255" opacity='0.75' zIndex="-2" count="75" src='/js/canvas.js'></script>
+<script type="text/javascript" color="0,255,255" opacity='0.75' zIndex="-2" count="75" src='/js/canvas.js'></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
-
 </html>
