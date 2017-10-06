@@ -11,6 +11,8 @@
 
 <p><p class="note-tags "><code class="notebook">九月</code> <code>第五周</code> <code>2017-09-25</code> <code>2017-10-01</code> </p></p>
 
+
+
 <h3 id="1-完善前端标注-remarkable">1. 完善前端标注 Remarkable</h3>
 
 <blockquote>
@@ -30,6 +32,8 @@
 在标记过程中发现的种种问题，写为issues以供节后更新 <br>
 <div class="checklist"><div class="checklist-item"><input type="checkbox"> 切换问题后，tag不初始化的问题</div><div class="checklist-item"><input type="checkbox"> 多次点击可能因为延迟造成大量过题的现象</div></div></li>
 </ul>
+
+
 
 <h3 id="2-完善后端-autodoc">2. 完善后端 Autodoc</h3>
 
@@ -58,7 +62,8 @@
 新增<strong>分流</strong>机制，即每次抽取出题目后先让规则库进行判别，简单判别的题目直接生成该题目的答案存于本地，不进入前端的题库中，当前仅实现一种规则用于测试：“同segment内的 <code>前置词</code> + <code>所致</code>”(这种规则出现相当频繁，直接解决了约一万道题目的标注) <br>
 <ul>
 <li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/dd482f1d93aff6c6c194bcfea4c022f4c5d9a452" target="_blank">update shunt rules with link_couple.</a></li>
-<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/bc154673d59959682806a832a91e4fd55595b731" target="_blank">change strategy of link_couple extracting.</a></li></ul></li>
+<li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/bc154673d59959682806a832a91e4fd55595b731" target="_blank">change strategy of link_couple extracting.</a></li>
+<li>当前需要人工标注数：21808 / 32095 （自动标注规则数：1）</li></ul></li>
 <li>修复调试与展示过程中出现的小问题 <br>
 <ul>
 <li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/991acaecb5b216b47ccdb15197bb7b0c2b84ffd2" target="_blank">decrease log text during posting.</a></li>
@@ -79,6 +84,8 @@
 <li><a href="http://gitpd.appdao.com/cheftin/AutoDoc/commit/19b2164f5fde92ce108aed8bea132ce7e9f31e40" target="_blank">noting new possible link_couple examples.</a></li>
 </ul>
 
+
+
 <h3 id="other-works">Other Works</h3>
 
 
@@ -91,27 +98,43 @@
 
 <p>本周没有作业批改任务，下周为期中考试。</p>
 
+
+
 <h4 id="pytorch-research">Pytorch Research</h4>
 
 <blockquote>
-  <p>调研中 <br>
-  Torch Self-Learning <br>
-  <a href="https://okcd00.github.io/Torch Self-Learning.html" target="_blank">点此查看</a> 当前实时调研进度</p>
+  <p>调研中：Torch Self-Learning <br>
+  <a href="https://okcd00.github.io/articles/2017-09/%E3%80%90Pytorch%E3%80%91Torch_Basic_Learning.html" target="_blank">Torch_Basic_Learning</a>  <br>
+  <a href="https://okcd00.github.io/articles/2017-09/%E3%80%90Pytorch%E3%80%91Torch_NN_Learning.html" target="_blank">Torch_NN_Learning</a> </p>
 </blockquote>
-
-
 
 <h4 id="ppt-modify">PPT Modify</h4>
 
 <blockquote>
   <p>PPT for AI Course  <br>
-  <a href="https://okcd00.github.io/wlog/AI Course PPT 试修改说明.html" target="_blank"><strong>[Finished]</strong></a> </p>
+  <a href="https://okcd00.github.io/wlog/AI Course PPT 试修改说明.html" target="_blank"><strong>[Finished]</strong></a>  <br>
+  将最后一个文件夹中的PPT过了一遍，需要修改的地方仅有一处拼写错误和一处格式微调，至此全四个文件夹的更新全部结束，如果有需要修改的可以继续随时修改。</p>
 </blockquote>
+
+
+
+<h4 id="website-setup">Website Setup</h4>
+
+<p>初期使用以下定义： <br>
+<code>aifundamental.com</code> for 国内访问（oschina源） <br>
+<code>ai-fundamental.com</code> for 国际访问（github源） <br>
+<code>pages assets</code> 作为矢量图等图像存放方式 <br>
+<code>github Release</code> 作为课件等在线存储载体，后期采用类似斯坦福大学的课程网页形式</p>
+
+<p>owner权限邮箱均设置为<code>luop@ict.ac.cn</code> <br>
+辅助修改权限设置为<code>okcd00@qq.com</code></p>
 
 <h3 id="weekly-timetable">Weekly Timetable</h3>
 
 <ul><li><code>2017-10-07</code> 周六：到北京后到计算所的办公室报到</li>
 </ul>
+
+
 
 <h3 id="notes">Notes</h3>
 
