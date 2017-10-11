@@ -21,7 +21,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="CDPlayer&#39;s Blog"/>
+        <meta property="og:title" content="【Chrome-Crx】键盘模拟鼠标点击网页按钮"/>
     
 
     <!--Open Graph Description-->
@@ -34,7 +34,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -45,7 +45,7 @@
 
     <!-- Title -->
     
-    <title>page - CDPlayer&#39;s Blog</title>
+    <title>【Chrome-Crx】键盘模拟鼠标点击网页按钮 - CDPlayer&#39;s Blog</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -160,62 +160,25 @@
     <div class="logo">
         <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
         
-            <h1 id="main-title" class="title">CDPlayer's Blog</h1>
-        
     </div>
 </header>
 
         <section class="main">
             
-                
 <div class="post">
 
-    <div class="post-header index">
+    <div class="post-header">
         <h1 class="title">
-            <a href="../../articles/2016-03/【codecs.BOM】使用Python程序输出csv格式数据.html">
-                【codecs.BOM】使用Python程序输出csv格式数据
+            <a href="../../articles/2017-10/【Chrome-crx】键盘模拟鼠标点击网页按钮.html">
+                【Chrome-Crx】键盘模拟鼠标点击网页按钮
             </a>
         </h1>
         <div class="post-info">
             
-                <span class="date">2016-03-18</span>
+                <span class="date">2017-10-11</span>
             
             
-                <a href="../../articles/2016-03/【codecs.BOM】使用Python程序输出csv格式数据.html#disqus_thread" class="comments article-comment-link">留言</a>
-            
-            
-                <span class="category">
-                    <a href="/categories/编程记忆/">编程记忆</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>这些天做一个数据处理的任务：<br>要求是输出一个csv格式的文件。<br>每次用NotePad++打开都正常，一用excel打开就一万个乱码，<br>好不容易乱码没了，用作分隔符的逗号也进单元格去了（变成单列了）</p>
-<p>辛苦的查原因调试代码测试输出过程略去（以后要是有心情再来写好了）……<br>重点是！~<br>把能用的模板记录一下，以后说不定还要用呢QwQ</p>
-        </div>
-        <a href="../../articles/2016-03/【codecs.BOM】使用Python程序输出csv格式数据.html" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="../../articles/2015-07/【Fsteam】使用C++筛选合并多文件的尝试.html">
-                【Fsteam】使用C++筛选合并多文件的尝试
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-07-18</span>
-            
-            
-                <a href="../../articles/2015-07/【Fsteam】使用C++筛选合并多文件的尝试.html#disqus_thread" class="comments article-comment-link">留言</a>
+                <a href="#disqus_thread" class="comments">留言</a>
             
             
                 <span class="category">
@@ -225,36 +188,69 @@
         </div>
     </div>
 
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+		<!-- MathJax support -->
+		
+
+		
+        <!-- Post Content -->
+        <h2 id="0x00-前言"><a href="#0x00-前言" class="headerlink" title="0x00 前言"></a>0x00 前言</h2><p>最近在做一个标注任务：<br>简单的说，就是屏幕上有好多小方块，选中其中的部分，<br>然后在页面下面的四个标注按钮（红绿蓝黑）上点一下，<br>小方块们就会被染成这个按钮的颜色，需要把所有的小方块们染色完。</p>
+<p>请各位想象一下：纯鼠标工作，在一个白底的网页上来回翻飞舞动，眼睛都看花啦！<br>所以我决定想个法子把这四个染色按钮绑在我键盘上的几个键上（QWER就是你们了）。<br>（以后标注起来看起来在打DOTA一样哈哈哈）</p>
+<a id="more"></a>
+<h2 id="0x01-配置使用"><a href="#0x01-配置使用" class="headerlink" title="0x01 配置使用"></a>0x01 配置使用</h2><p>二话不说先贴解决方案：</p>
+<ul>
+<li>装个插件： <a href="https://chrome.google.com/webstore/detail/shortkeys-custom-keyboard/logpjaacgmcbpdkdchjiaagddngobkck" target="_blank" rel="external">ShortKey for Chrome</a></li>
+<li>配置按键：<ul>
+<li>Keyboard Shortcut（选择按键）: <code>Q</code></li>
+<li>Behavior（选择效果）: <code>Run JavaScript</code></li>
+<li>Label as（取个名字）: <code>&quot;按下C按钮&quot;</code></li>
+<li>Javascript code to run（跑一段javascript代码）: <ul>
+<li><figure class="highlight plain"><figcaption><span>btn-C')[0].click()```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">truetrue+ （当然可以写好多，这里我要求不多就写了一行）</div><div class="line">true+ Active while in form fields（选择生效页面）</div><div class="line">truetrue+ Only for specific sites（我选的是只在这个网域生效）</div><div class="line">truetrue+ www.blablablabla.com/mark/todo/* </div><div class="line">+ 刷新页面，开始使用</div><div class="line">true+ 如上述配置的意思为：</div><div class="line">truetrue+ 仅在标注页面的url域生效，</div><div class="line">truetrue+ 按下键盘中的Q键，</div><div class="line">truetrue+ 等效于点击class名称为&apos;btn btn-C&apos;的按钮一次。</div><div class="line"></div><div class="line">## 0x02 详细说明</div><div class="line">其实我觉得叫详细说明不如叫心路历程哈哈哈</div><div class="line"></div><div class="line">首先这是我在Chrome商店搜索shortkey直接淘出来的一个扩展程序：</div><div class="line">&gt;**Shortkeys** (Custom Keyboard Shortcuts)</div><div class="line">由Mike Crittenden提供</div><div class="line"></div><div class="line">看起来还不赖，我就去check了一下支持哪些功能（要知道，扩展性是一个程序的生命线啊）</div><div class="line">然后看到这一行的时候我的眼镜就闪闪发光了——“Behavior: `Run JavaScript`”</div><div class="line">好的就决定是你了，能跑一个脚本语言比什么不强？</div><div class="line"></div><div class="line">然后就是javascript了，哼╭(╯^╰)╮，本大爷怎么可能有五分钟内不能写出来的东西</div><div class="line">```javascript</div><div class="line">$(&apos;.btn-C&apos;).click()</div><div class="line"></div><div class="line">//Uncaught ReferenceError: $ is not defined at &lt;anonymous&gt;:1:1</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>这……不科学，怎么连<code>$</code>都不认识呢，明明我在console里可以直接用的啊！<br>那这样行么：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'btn btn-C'</span>).click()</div><div class="line"></div><div class="line"><span class="comment">//Uncaught TypeError: Cannot read property 'click' of null at &lt;anonymous&gt;:1:37</span></div></pre></td></tr></table></figure>
+<p>啥……Null？那就是说没拿到咯……然后进行了如下的尝试，看如何能获得那个button对象<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">document.getElementById(<span class="string">'.btn'</span>)</div><div class="line">null</div><div class="line">document.getElementById(<span class="string">'.btn-C'</span>)</div><div class="line">null</div><div class="line">document.getElementById(<span class="string">'btn btn-C'</span>)</div><div class="line">null</div><div class="line">document.getElementsByClassName(<span class="string">'.btn'</span>)</div><div class="line">[]</div><div class="line"></div><div class="line">length: <span class="number">0</span></div><div class="line">__proto__: HTMLCollection</div><div class="line"></div><div class="line">document.getElementsByClassName(<span class="string">'btn btn-C'</span>)</div><div class="line">[<span class="selector-tag">button</span><span class="selector-class">.btn</span><span class="selector-class">.btn-C</span>]</div><div class="line">length: <span class="number">1</span></div><div class="line"><span class="number">0</span>: <span class="selector-tag">button</span><span class="selector-class">.btn</span><span class="selector-class">.btn-C</span></div><div class="line">__proto__: HTMLCollection</div></pre></td></tr></table></figure></p>
+<p>好好好，有对象了有对象了（总觉得这句话哪里不对）<br>那就决定是你了！<br><figure class="highlight plain"><figcaption><span>btn-C').click() ```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">啊咧怎么又……哦对了是个list不好意思哈哈哈</div><div class="line">``` document.getElementsByClassName(&apos;btn btn-C&apos;)[0].click()</div></pre></td></tr></table></figure></p>
+<p>搞定，看我一个QEQWR连招带走对面（老师我真的在标注，真的真的~）</p>
+
+    </div>
+
     
-        <div class="content">
-            <p>今天接到一个小任务，说是让把好多文件（大概2800来个，总大小超过1G）中的信息进行筛选，整合到一个文件里方便接下来的操作。<br>那么，无可避免的就需要用到多文件读写。那么，该如何批量打开多个文件进行读写操作呢？<br>众所周知 freopen(filename,r/w,i/ostream)的第一个参数filename需要是一个常量const char*，即便文件名是有序的，我们也没办法将变量传参进去。</p>
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Javascript/">#Javascript</a>
         </div>
-        <a href="../../articles/2015-07/【Fsteam】使用C++筛选合并多文件的尝试.html" class="read-more">Read More</a>
+    
+
+    <!-- Comments -->
+    
+    <div class="comments">
+        
+<div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+    </div>
     
 
 </div>
-            
         </section>
+
     </div>
 </div>
-
-
-
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="wrap-pagination">
-                <a class="" href="//page/3/">
-                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                </a>
-                <a class="disabled" href="/">
-                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-
-
-
 
 </div>
 
@@ -407,7 +403,7 @@
         var dsq = document.createElement('script');
         dsq.type = 'text/javascript';
         dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
