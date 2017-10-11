@@ -129,12 +129,6 @@
             </li>
             
             <li class="menu-item">
-                <a href="../../wlog">
-                    WorkLog
-                </a>
-            </li>
-            
-            <li class="menu-item">
                 <a href="../../about">
                     About
                 </a>
@@ -240,7 +234,8 @@
 <p>这……不科学，怎么连<code>$</code>都不认识呢，明明我在console里可以直接用的啊！<br>那这样行么：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'btn btn-C'</span>).click()</div><div class="line"></div><div class="line"><span class="comment">//Uncaught TypeError: Cannot read property 'click' of null at &lt;anonymous&gt;:1:37</span></div></pre></td></tr></table></figure>
 <p>啥……Null？那就是说没拿到咯……然后进行了如下的尝试，看如何能获得那个button对象<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">document.getElementById(<span class="string">'.btn'</span>)</div><div class="line">null</div><div class="line">document.getElementById(<span class="string">'.btn-C'</span>)</div><div class="line">null</div><div class="line">document.getElementById(<span class="string">'btn btn-C'</span>)</div><div class="line">null</div><div class="line">document.getElementsByClassName(<span class="string">'.btn'</span>)</div><div class="line">[]</div><div class="line"></div><div class="line">length: <span class="number">0</span></div><div class="line">__proto__: HTMLCollection</div><div class="line"></div><div class="line">document.getElementsByClassName(<span class="string">'btn btn-C'</span>)</div><div class="line">[<span class="selector-tag">button</span><span class="selector-class">.btn</span><span class="selector-class">.btn-C</span>]</div><div class="line">length: <span class="number">1</span></div><div class="line"><span class="number">0</span>: <span class="selector-tag">button</span><span class="selector-class">.btn</span><span class="selector-class">.btn-C</span></div><div class="line">__proto__: HTMLCollection</div></pre></td></tr></table></figure></p>
-<p>好好好，有对象了有对象了（总觉得这句话哪里不对）<br>那就决定是你了！<br><figure class="highlight plain"><figcaption><span>btn-C').click() ```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">啊咧怎么又……哦对了是个list不好意思哈哈哈</div><div class="line">``` document.getElementsByClassName(&apos;btn btn-C&apos;)[0].click()</div></pre></td></tr></table></figure></p>
+<p>好好好，有对象了有对象了（总觉得这句话哪里不对）<br>那就决定是你了！<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">document</span><span class="selector-class">.getElementsByClassName</span>(<span class="string">'btn btn-C'</span>)<span class="selector-class">.click</span>()</div></pre></td></tr></table></figure></p>
+<p>啊咧怎么又……哦对了是个list不好意思哈哈哈<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">document</span><span class="selector-class">.getElementsByClassName</span>(<span class="string">'btn btn-C'</span>)<span class="selector-attr">[0]</span><span class="selector-class">.click</span>()</div></pre></td></tr></table></figure></p>
 <p>搞定，看我一个QEQWR连招带走对面（老师我真的在标注，真的真的~）</p>
 
     </div>
@@ -394,7 +389,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="footer-copyright">
-                    @<a href="https://github.com/okcd00/">Chen Dian</a>. 2017 All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                    @<a href="https://github.com/okcd00/">Chen Dian</a>. 2017 All right reserved | Redesign & Deploy <a href="blog.csdn.net/okcd00">okcd00</a> | Hexo Theme <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
                 </div>
             </div>
         </div>
