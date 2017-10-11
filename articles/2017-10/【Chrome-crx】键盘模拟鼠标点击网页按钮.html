@@ -209,13 +209,34 @@
 <li>Behavior（选择效果）: <code>Run JavaScript</code></li>
 <li>Label as（取个名字）: <code>&quot;按下C按钮&quot;</code></li>
 <li>Javascript code to run（跑一段javascript代码）: <ul>
-<li><figure class="highlight plain"><figcaption><span>btn-C')[0].click()```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">truetrue+ （当然可以写好多，这里我要求不多就写了一行）</div><div class="line">true+ Active while in form fields（选择生效页面）</div><div class="line">truetrue+ Only for specific sites（我选的是只在这个网域生效）</div><div class="line">truetrue+ www.blablablabla.com/mark/todo/* </div><div class="line">+ 刷新页面，开始使用</div><div class="line">true+ 如上述配置的意思为：</div><div class="line">truetrue+ 仅在标注页面的url域生效，</div><div class="line">truetrue+ 按下键盘中的Q键，</div><div class="line">truetrue+ 等效于点击class名称为&apos;btn btn-C&apos;的按钮一次。</div><div class="line"></div><div class="line">## 0x02 详细说明</div><div class="line">其实我觉得叫详细说明不如叫心路历程哈哈哈</div><div class="line"></div><div class="line">首先这是我在Chrome商店搜索shortkey直接淘出来的一个扩展程序：</div><div class="line">&gt;**Shortkeys** (Custom Keyboard Shortcuts)</div><div class="line">由Mike Crittenden提供</div><div class="line"></div><div class="line">看起来还不赖，我就去check了一下支持哪些功能（要知道，扩展性是一个程序的生命线啊）</div><div class="line">然后看到这一行的时候我的眼镜就闪闪发光了——“Behavior: `Run JavaScript`”</div><div class="line">好的就决定是你了，能跑一个脚本语言比什么不强？</div><div class="line"></div><div class="line">然后就是javascript了，哼╭(╯^╰)╮，本大爷怎么可能有五分钟内不能写出来的东西</div><div class="line">```javascript</div><div class="line">$(&apos;.btn-C&apos;).click()</div><div class="line"></div><div class="line">//Uncaught ReferenceError: $ is not defined at &lt;anonymous&gt;:1:1</div></pre></td></tr></table></figure>
+<li><code>document.getElementsByClassName(&#39;btn btn-C&#39;)[0].click()</code></li>
+<li>（当然可以写好多，这里我要求不多就写了一行）</li>
+</ul>
 </li>
+<li>Active while in form fields（选择生效页面）<ul>
+<li>Only for specific sites（我选的是只在这个网域生效）</li>
+<li>www.blablablabla.com/mark/todo/* </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>刷新页面，开始使用<ul>
+<li>如上述配置的意思为：<ul>
+<li>仅在标注页面的url域生效，</li>
+<li>按下键盘中的Q键，</li>
+<li>等效于点击class名称为’btn btn-C’的按钮一次。</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
+<h2 id="0x02-详细说明"><a href="#0x02-详细说明" class="headerlink" title="0x02 详细说明"></a>0x02 详细说明</h2><p>其实我觉得叫详细说明不如叫心路历程哈哈哈</p>
+<p>首先这是我在Chrome商店搜索shortkey直接淘出来的一个扩展程序：</p>
+<blockquote>
+<p><strong>Shortkeys</strong> (Custom Keyboard Shortcuts)<br>由Mike Crittenden提供</p>
+</blockquote>
+<p>看起来还不赖，我就去check了一下支持哪些功能（要知道，扩展性是一个程序的生命线啊）<br>然后看到这一行的时候我的眼镜就闪闪发光了——“Behavior: <code>Run JavaScript</code>”<br>好的就决定是你了，能跑一个脚本语言比什么不强？</p>
+<p>然后就是javascript了，哼╭(╯^╰)╮，本大爷怎么可能有五分钟内不能写出来的东西<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'.btn-C'</span>).click()</div><div class="line"></div><div class="line"><span class="comment">//Uncaught ReferenceError: $ is not defined at &lt;anonymous&gt;:1:1</span></div></pre></td></tr></table></figure></p>
 <p>这……不科学，怎么连<code>$</code>都不认识呢，明明我在console里可以直接用的啊！<br>那这样行么：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'btn btn-C'</span>).click()</div><div class="line"></div><div class="line"><span class="comment">//Uncaught TypeError: Cannot read property 'click' of null at &lt;anonymous&gt;:1:37</span></div></pre></td></tr></table></figure>
 <p>啥……Null？那就是说没拿到咯……然后进行了如下的尝试，看如何能获得那个button对象<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">document.getElementById(<span class="string">'.btn'</span>)</div><div class="line">null</div><div class="line">document.getElementById(<span class="string">'.btn-C'</span>)</div><div class="line">null</div><div class="line">document.getElementById(<span class="string">'btn btn-C'</span>)</div><div class="line">null</div><div class="line">document.getElementsByClassName(<span class="string">'.btn'</span>)</div><div class="line">[]</div><div class="line"></div><div class="line">length: <span class="number">0</span></div><div class="line">__proto__: HTMLCollection</div><div class="line"></div><div class="line">document.getElementsByClassName(<span class="string">'btn btn-C'</span>)</div><div class="line">[<span class="selector-tag">button</span><span class="selector-class">.btn</span><span class="selector-class">.btn-C</span>]</div><div class="line">length: <span class="number">1</span></div><div class="line"><span class="number">0</span>: <span class="selector-tag">button</span><span class="selector-class">.btn</span><span class="selector-class">.btn-C</span></div><div class="line">__proto__: HTMLCollection</div></pre></td></tr></table></figure></p>
