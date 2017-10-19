@@ -222,7 +222,7 @@
 <h3 id="符号语言的导数"><a href="#符号语言的导数" class="headerlink" title="符号语言的导数"></a>符号语言的导数</h3><blockquote>
 <p>《Deep Learning》 Chap 6.5.5</p>
 </blockquote>
-<p>代数表达式和计算图都对符号(symbol) 或不具有特定值的变量进行操作。这些代数或者基于图的表达式被称为符号表示(symbolic representation)。<br>当我们实际使用或者训练神经网络时，我们必须给这些符号赋值。我们用一个特定的数值(numeric value) 来替代网络的符号输入x，例如 $[1.2, 3, 765, -􀀀1.8]^T$。</p>
+<p>代数表达式和计算图都对符号(symbol) 或不具有特定值的变量进行操作。这些代数或者基于图的表达式被称为符号表示(symbolic representation)。<br>当我们实际使用或者训练神经网络时，我们必须给这些符号赋值。我们用一个特定的数值(numeric value) 来替代网络的符号输入x，例如 $[1.2, 3, 765, -1.8]^T$。</p>
 <p><img src="/assets/1508315592269.png" alt="Alt text"></p>
 <p><strong>符号到数值</strong>的微分<br>一些反向传播的方法采用计算图和一组用于图的输入的数值，然后返回在这些输入值处梯度的一组数值。我们将这种方法称为‘‘符号到数值’’ 的微分。这种方法用在诸如<strong>Torch</strong>(Collobert et al., 2011b)和<strong>Caffe</strong>(Jia, 2013)之类的库中。  </p>
 <p><strong>符号到符号</strong>的微分<br>另一种方法是采用计算图以及添加一些额外的节点到计算图中，这些额外的节点提供了我们所需导数的符号描述。这是<strong>Theano</strong>(Bergstra et al., 2010b; Bastien et al., 2012b) 和<strong>TensorFlow</strong>(Abadi et al., 2015) 采用的方法。图6.10 中给出了该方法如何工作的一个例子。这种方法的主要优点是导数可以使用与原始表达式相同的语言来描述。</p>
@@ -232,9 +232,15 @@
 <h3 id="Backpropagation-algorithm"><a href="#Backpropagation-algorithm" class="headerlink" title="Backpropagation algorithm"></a>Backpropagation algorithm</h3><blockquote>
 <p><a href="http://neuralnetworksanddeeplearning.com/chap2.html" target="_blank" rel="external">http://neuralnetworksanddeeplearning.com/chap2.html</a></p>
 </blockquote>
-<p><img src="/assets/1508321998322.png" alt="Alt text"></p>
+<ol>
+<li><strong>Input</strong> $x$ : Set the corresponding activation $a^1$ for the input layer.</li>
+<li><strong>Feedforward</strong> : For each $l=2,3,…,L$ compute $z^l = w^la^{l-1}+b^l$ and $a^l = \sigma (z^l)$</li>
+<li><strong>Output error</strong> $\delta^L$ : Compute the vector $\delta^L = \nabla_aC \bigodot \sigma^\prime(z^L)$</li>
+<li><strong>Backpropagate the error</strong> : For each $l=L-1,L-2,…,2$ compute $\delta^l = ((w^{l+1})^{\top} \delta^{l+1}) \bigodot \sigma^\prime(z^l)$</li>
+<li><strong>Output</strong> : The gradient of the cost function is given by $\frac{\partial C}{\partial w_{jk}^l} = a_k^{l-1}\delta_j^l$ and $\frac{\partial C}{\partial b_{j}^l} = \delta_j^l$</li>
+</ol>
 <h3 id="Automatic-Differentiation"><a href="#Automatic-Differentiation" class="headerlink" title="Automatic Differentiation"></a>Automatic Differentiation</h3><blockquote>
-<p><a href="http://dlsys.cs.washington.edu/schedule" target="_blank" rel="external">CSE599G1</a>: Deep Learning System (陈天奇)<br><a href="/assets/CSE599G1 DeepLearning System Lecture4.pdf">Slides View</a></p>
+<p><a href="http://dlsys.cs.washington.edu/schedule" target="_blank" rel="external">CSE599G1</a>: Deep Learning System (陈天奇)</p>
 </blockquote>
 <p>微分求解大致可以分为4种方式：</p>
 <ul>
@@ -246,16 +252,27 @@
 <li>不能完全消除truncation error，只是将误差减小。但是由于它实在是太简单实现了，于是很多时候，我们利用它来检验其他算法的正确性，比如在实现backprop的时候，我们用的”gradient check”就是利用数值微分法。</li>
 </ul>
 </li>
-<li>符号微分法(Symbolic Differentiation)<ul>
-<li>“表达式膨胀”（expression swell）问题，如果不加小心就会使得问题符号微分求解的表达式急速“膨胀”，导致最终求解速度变慢，如下图所示。</li>
+<li><p>符号微分法(Symbolic Differentiation)</p>
+<ul>
+<li>“表达式膨胀”（expression swell）问题，如果不加小心就会使得问题符号微分求解的表达式急速“膨胀”，导致最终求解速度变慢，如本小节末的图表<code>Table 1</code>所示。</li>
+<li><img src="/assets/1508418776626.png" alt="Alt text"></li>
 </ul>
 </li>
-<li><strong>自动微分法</strong>(Automatic Differentiation)<ul>
+<li><p><strong>自动微分法</strong>(Automatic Differentiation)</p>
+<ul>
 <li>自动微分法是一种介于符号微分和数值微分的方法：数值微分强调一开始直接代入数值近似求解；符号微分强调直接对代数进行求解，最后才代入问题数值；自动微分将符号微分法应用于最基本的算子，比如常数，幂函数，指数函数，对数函数，三角函数等，然后代入数值，保留中间结果，最后再应用于整个函数。因此它应用相当灵活，可以做到完全向用户隐藏微分求解过程，由于它<strong>只对基本函数或常数</strong>运用符号微分法则，所以它可以<strong>灵活结合</strong>编程语言的循环结构，条件结构等，使用自动微分和不使用自动微分对代码总体改动非常小，并且由于它的计算实际是一种<strong>图计算</strong>，可以对其做很多优化，这也是为什么该方法在现代深度学习系统中得以广泛应用。</li>
 </ul>
 </li>
 </ul>
 <p><img src="/assets/1508406083327.png" alt="Alt text"></p>
+<h3 id="Backpropagation-vs-AutoDiff-reverse"><a href="#Backpropagation-vs-AutoDiff-reverse" class="headerlink" title="Backpropagation vs AutoDiff (reverse)"></a>Backpropagation vs AutoDiff (reverse)</h3><blockquote>
+<p>CSE599G1 DeepLearning System Lecture4 —— <a href="/assets/CSE599G1 DeepLearning System Lecture4.pdf">Slides View</a></p>
+</blockquote>
+<ul>
+<li>We can take derivative of derivative nodes in autodiff, while it’s much harder to do so in backprop.</li>
+<li>In autodiff, there’s only a forward pass (vs. forward-backward in backprop). So it’s easier to apply graph and schedule optimization to a single graph.</li>
+<li>In backprop, all intermediate results might be used in the future, so we need to keep these values in the memory. On the other hand, in autodiff, we already know the dependencies of the backward graph, so we can have better memory optimization.</li>
+</ul>
 <h3 id="Jacobi与链式法则"><a href="#Jacobi与链式法则" class="headerlink" title="Jacobi与链式法则"></a>Jacobi与链式法则</h3><blockquote>
 <p>《Deep Learning》 Chap 6.5.2<br>该段引用了较多开源社区中对 Deep Learning 一书的中文翻译<br><a href="https://github.com/exacity/deeplearningbook-chinese" target="_blank" rel="external">https://github.com/exacity/deeplearningbook-chinese</a></p>
 </blockquote>
@@ -287,9 +304,8 @@
 <script type="math/tex; mode=display">\frac{\partial u^{(n)}}{\partial u^{(j)}} =
   \sum_{\substack{\text{path}(u^{(\pi_1)}, u^{(\pi_2)}, \ldots, u^{(\pi_t)}  ),\ \text{from } \pi_1=j \text{ to }\pi_t = n}}
   \prod_{k=2}^t \frac{\partial u^{(\pi_k)}}{\partial u^{(\pi_{k-1})}}.</script><p>由于节点 $j$ 到节点 $n$ 的路径数目可以关于这些路径的长度上指数地增长，所以上述求和符号中的项数（这些路径的数目），可能以前向传播图的深度的指数级增长。 会产生如此大的成本是因为对于 $\frac{\partial u^{(i)}}{\partial u^{(j)}}$ ，相同的计算会重复进行很多次。为了避免这种重新计算，我们可以将反向传播看作一种表填充算法，利用存储的中间结果 $\frac{\partial u^{(n)}}{\partial u^{(i)}}$ 来对表进行填充。 图中的每个节点对应着表中的一个位置，这个位置存储对该节点的梯度。 通过顺序填充这些表的条目，反向传播算法避免了重复计算许多公共子表达式——这种表填充策略有时被称为<strong>动态规划</strong>。</p>
-<p><img src="/assets/1508405738873.png" alt="Alt text"></p>
-<p><img src="/assets/1508405586716.png" alt="Alt text"></p>
-<p>上述图片来自于：<a href="http://blog.csdn.net/aws3217150/article/details/70214422" target="_blank" rel="external">http://blog.csdn.net/aws3217150/article/details/70214422</a></p>
+<p><img src="/assets/1508418991710.png" alt="Alt text"></p>
+<p>上述AutoDiff的图片来自于：<a href="http://dlsys.cs.washington.edu/pdf/lecture4.pdf" target="_blank" rel="external">http://dlsys.cs.washington.edu/pdf/lecture4.pdf</a></p>
 <h3 id="高阶导数"><a href="#高阶导数" class="headerlink" title="高阶导数"></a>高阶导数</h3><p>一些软件框架支持使用高阶导数。在深度学习软件框架中，这至少包括Theano和TensorFlow。这些库使用一种数据结构来描述要被微分的原始函数，它们使用相同类型的数据结构来描述这个函数的导数表达式。这意味着符号微分机制可以应用于导数（从而产生高阶导数）。</p>
 <blockquote>
 <p>黑塞矩阵（Hessian Matrix），又译作海森矩阵、海瑟矩阵、海塞矩阵等，是一个多元函数的<strong>二阶偏导数</strong>构成的方阵，描述了函数的局部曲率。黑塞矩阵最早于19世纪由德国数学家Ludwig Otto Hesse提出，并以其名字命名。黑塞矩阵常用于牛顿法解决优化问题，利用黑塞矩阵可判定多元函数的极值问题。   —— 百度百科</p>
