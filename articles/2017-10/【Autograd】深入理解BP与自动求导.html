@@ -230,7 +230,11 @@
 <p><strong>TensorFlow</strong>中实现的自动求导（automatic gradient / Automatic Differentiation）：<br>实现的方式是利用<strong>反向传递</strong>与<strong>链式法则</strong>建立一张对应原计算图的梯度图。因为导数只是另外一张计算图，可以再次运行反向传播，对导数再进行求导以得到更高阶的导数。（这里我们重点讲这一种，所以下面几个小节会对反向传递算法与链式法则作简要概述）</p>
 <p><img src="/assets/1508394713356.png" alt="Alt text"></p>
 <h3 id="Backpropagation-algorithm"><a href="#Backpropagation-algorithm" class="headerlink" title="Backpropagation algorithm"></a>Backpropagation algorithm</h3><blockquote>
-<p><a href="http://neuralnetworksanddeeplearning.com/chap2.html" target="_blank" rel="external">http://neuralnetworksanddeeplearning.com/chap2.html</a></p>
+<p>【<strong>Reference</strong>】 <a href="http://neuralnetworksanddeeplearning.com/chap2.html" target="_blank" rel="external">http://neuralnetworksanddeeplearning.com/chap2.html</a></p>
+<ul>
+<li><a href="http://neuralnetworksanddeeplearning.com/chap2.html#proof_of_the_four_fundamental_equations_(optional" target="_blank" rel="external"><strong>Proof</strong> of the fundamental equations (optional for reading)</a>)</li>
+<li><a href="http://neuralnetworksanddeeplearning.com/chap2.html#exercises_675621" target="_blank" rel="external"><strong>Another version</strong> of Back-prop for mini-batch</a></li>
+</ul>
 </blockquote>
 <ol>
 <li><strong>Input</strong> $x$ : Set the corresponding activation $a^1$ for the input layer.</li>
@@ -239,6 +243,14 @@
 <li><strong>Backpropagate the error</strong> : For each $l=L-1,L-2,…,2$ compute $\delta^l = ((w^{l+1})^{\top} \delta^{l+1}) \bigodot \sigma^\prime(z^l)$</li>
 <li><strong>Output</strong> : The gradient of the cost function is given by $\frac{\partial C}{\partial w_{jk}^l} = a_k^{l-1}\delta_j^l$ and $\frac{\partial C}{\partial b_{j}^l} = \delta_j^l$</li>
 </ol>
+<blockquote>
+<p><a href="http://neuralnetworksanddeeplearning.com/chap2.html#warm_up_a_fast_matrix-based_approach_to_computing_the_output_from_a_neural_network" target="_blank" rel="external">算法中用到的符号解释</a></p>
+<ul>
+<li>We’ll use $w_{jk}^l$ to denote the weight for the connection from the kthkth neuron in the $(l-1)^{th}$ layer to the $j^{th}$ neuron in the $l^{th}$ layer.</li>
+<li>We use $b_j^l$ for the bias of the $j^{th}$ neuron in the $l^{th}$ layer. And we use $a_j^l$ for the activation of the $j^{th}$ neuron in the $l^{th}$ layer. </li>
+<li>We use $s \bigodot t$ to denote the elementwise product of the two vectors. Thus the components of $s \bigodot t$ are just $(s \bigodot t)_j=s_j t_j$ </li>
+</ul>
+</blockquote>
 <h3 id="Automatic-Differentiation"><a href="#Automatic-Differentiation" class="headerlink" title="Automatic Differentiation"></a>Automatic Differentiation</h3><blockquote>
 <p><a href="http://dlsys.cs.washington.edu/schedule" target="_blank" rel="external">CSE599G1</a>: Deep Learning System (陈天奇)</p>
 </blockquote>
@@ -255,7 +267,12 @@
 <li><p>符号微分法(Symbolic Differentiation)</p>
 <ul>
 <li>“表达式膨胀”（expression swell）问题，如果不加小心就会使得问题符号微分求解的表达式急速“膨胀”，导致最终求解速度变慢，如本小节末的图表<code>Table 1</code>所示。</li>
-<li><img src="/assets/1508418776626.png" alt="Alt text"></li>
+<li>Implement differentiation rules:<ul>
+<li>Product Rule: $\frac{d(f+g)}{dx}=\frac{df}{dx}+\frac{dg}{dx}$</li>
+<li>Sum Rule: $\frac{d(fg)}{dx}=\frac{df}{dx}g+f\frac{dg}{dx}$</li>
+<li>Chain Rule: $\frac{d(h(x))}{dx}=\frac{df(g(x))}{dx}+\frac{dg(x)}{x}$</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p><strong>自动微分法</strong>(Automatic Differentiation)</p>
@@ -269,9 +286,9 @@
 <p>CSE599G1 DeepLearning System Lecture4 —— <a href="/assets/CSE599G1 DeepLearning System Lecture4.pdf">Slides View</a></p>
 </blockquote>
 <ul>
-<li>We can take derivative of derivative nodes in autodiff, while it’s much harder to do so in backprop.</li>
-<li>In autodiff, there’s only a forward pass (vs. forward-backward in backprop). So it’s easier to apply graph and schedule optimization to a single graph.</li>
-<li>In backprop, all intermediate results might be used in the future, so we need to keep these values in the memory. On the other hand, in autodiff, we already know the dependencies of the backward graph, so we can have better memory optimization.</li>
+<li>We can <strong>take derivative of derivative nodes</strong> in autodiff, while it’s much harder to do so in backprop.</li>
+<li>In autodiff, there’s <strong>only a forward pass</strong> (vs. forward-backward in backprop). So it’s easier to apply graph and schedule optimization to a single graph.</li>
+<li>In backprop, all intermediate results might be used in the future, so we need to keep these values in the memory. On the other hand, in autodiff, we already know the dependencies of the backward graph, so we can have <strong>better memory optimization</strong>.</li>
 </ul>
 <h3 id="Jacobi与链式法则"><a href="#Jacobi与链式法则" class="headerlink" title="Jacobi与链式法则"></a>Jacobi与链式法则</h3><blockquote>
 <p>《Deep Learning》 Chap 6.5.2<br>该段引用了较多开源社区中对 Deep Learning 一书的中文翻译<br><a href="https://github.com/exacity/deeplearningbook-chinese" target="_blank" rel="external">https://github.com/exacity/deeplearningbook-chinese</a></p>
@@ -316,11 +333,14 @@
 <script type="math/tex; mode=display">H v=\nabla_{x} \left [ (\nabla_{x} f(x))^\top v\right ]</script><p>虽然计算Hessian通常是不可取的，但是可以使用Hessian向量积。 可以对所有的 $i=1,\ldots,n$ 简单地计算 $H e^{(i)}$，其中 $e^{(i)}$ 是 $e_i^{(i)}=1$ 并且其他元素都为 $0$ 的 <strong>one-hot</strong> 向量（通过阅读<a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/ops/gradients_impl.py" target="_blank" rel="external">源码</a>，我们发现Hessian向量积 $Hv$ 尚未实现成avaliable的状态，Tensorflow当前版本当前仅对Hesssian矩阵完成了实现）。</p>
 <h2 id="其它：PyTorch的自动求导"><a href="#其它：PyTorch的自动求导" class="headerlink" title="其它：PyTorch的自动求导"></a>其它：PyTorch的自动求导</h2><p>PyTorch提供了包<code>torch.autograd</code>用于自动求导。在前向过程中，PyTorch会构建计算图，每个<strong>节点</strong>用Variable表示，<strong>边</strong>表示由输入节点到输出节点的函数（<code>torch.autograd.Function</code>对象）。Function对象不仅负责执行前向计算，在反向过程中，每个Function对象会调用<code>.backward()</code>函数计算输出对输入的梯度，然后将梯度传递给下一个Function对象。</p>
 <h3 id="How-autograd-encodes-the-history-PyTorch"><a href="#How-autograd-encodes-the-history-PyTorch" class="headerlink" title="How autograd encodes the history (PyTorch)"></a>How autograd encodes the history (PyTorch)</h3><blockquote>
+<p><strong>原文</strong> Internally, autograd represents this graph as a graph of <code>Function</code> objects (really expressions), which can be <code>apply()</code> ed to compute the result of evaluating the graph. When computing the forwards pass, autograd <strong>simultaneously performs</strong> the requested computations and builds up <strong>a graph representing the function that computes the gradient</strong> (the <code>.grad_fn</code> attribute of each <code>Variable</code> is <strong>an entry point</strong> into this graph). When the forwards pass is completed, we evaluate this graph in the backwards pass to compute the gradients.</p>
+<p>An important thing to note is that the graph is recreated from scratch at every iteration, and this is exactly what allows for using arbitrary Python control flow statements, that can change the overall shape and size of the graph at every iteration. You don’t have to encode all possible paths before you launch the training - what you run is what you differentiate.</p>
+<blockquote>
 <p><a href="http://pytorch.org/docs/master/notes/autograd.html#how-autograd-encodes-the-history" target="_blank" rel="external">http://pytorch.org/docs/master/notes/autograd.html#how-autograd-encodes-the-history</a></p>
 </blockquote>
-<p>Autograd is reverse automatic differentiation system. Conceptually, autograd records a graph recording all of the operations that created the data as you execute operations, giving you a directed acyclic graph whose leaves are the input variables and roots are the output variables. By tracing this graph from roots to leaves, you can automatically compute the gradients using the chain rule.</p>
-<p>Internally, autograd represents this graph as a graph of <code>Function</code> objects (really expressions), which can be <code>apply()</code> ed to compute the result of evaluating the graph. When computing the forwards pass, autograd <strong>simultaneously performs</strong> the requested computations and builds up <strong>a graph representing the function that computes the gradient</strong> (the <code>.grad_fn</code> attribute of each <code>Variable</code> is <strong>an entry point</strong> into this graph). When the forwards pass is completed, we evaluate this graph in the backwards pass to compute the gradients.</p>
-<p>An important thing to note is that the graph is recreated from scratch at every iteration, and this is exactly what allows for using arbitrary Python control flow statements, that can change the overall shape and size of the graph at every iteration. You don’t have to encode all possible paths before you launch the training - what you run is what you differentiate.</p>
+</blockquote>
+<p><strong>自动求导如何编码历史信息</strong> in <a href="https://github.com/awfssv/pytorch-cn/blob/master/docs/notes/autograd.md" target="_blank" rel="external">PyTorch-CN</a><br>每个变量都有一个<code>.creator</code>属性，它指向把它作为输出的函数。这是一个由<code>Function</code>对象作为节点组成的有向无环图（DAG）的入口点，它们之间的引用就是图的<strong>边</strong>。每次执行一个操作时，一个表示它的新<code>Function</code>就被实例化，它的<code>forward()</code>方法被调用，并且它输出的<code>Variable</code>的创建者被设置为这个<code>Function</code>。然后，通过跟踪从任何变量到叶节点的路径，可以重建创建数据的操作序列，并自动计算梯度。</p>
+<p>需要注意的一点是，整个图在每次迭代时都是从头开始重新创建的，这就允许使用任意的Python控制流语句，这样可以在每次迭代时改变图的整体形状和大小。在启动训练之前不必对所有可能的路径进行编码—— <strong>what you run is what you differentiate</strong>.</p>
 <h3 id="PyTorch中定义一个新操作"><a href="#PyTorch中定义一个新操作" class="headerlink" title="PyTorch中定义一个新操作"></a>PyTorch中定义一个新操作</h3><p>定义新的操作，意味着定义Function的子类，并且这些子类必须重写以下函数：<code>::forward()</code>和<code>::backward()</code>。初始化函数<code>::__init__()</code>根据实际需求判断是否需要重写。</p>
 <blockquote>
 <p><strong>forward()</strong><br>forward()可以有任意多个输入、任意多个输出，但是输入和输出必须是Variable。</p>
